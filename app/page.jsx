@@ -18,6 +18,12 @@ const exploreLinks = [
       "A clear framework for moving from financial independence toward inner steadiness.",
   },
   {
+    href: "/how-much-is-enough",
+    title: "Enough",
+    description:
+      "A quiet reflection on sufficiency, security, and when more stops helping.",
+  },
+  {
     href: "/retreats",
     title: "Retreats",
     description:
