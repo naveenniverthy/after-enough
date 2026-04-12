@@ -30,6 +30,12 @@ const exploreLinks = [
       "A reflection on the stage of life where money stops ruling each decision.",
   },
   {
+    href: "/life-after-financial-independence",
+    title: "Life After FI",
+    description:
+      "What actually changes after financial independence, and why freedom alone is not enough.",
+  },
+  {
     href: "/retreats",
     title: "Retreats",
     description:

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PageIntro from "../../components/PageIntro";
 
 export const metadata = {
@@ -21,6 +22,12 @@ export default function WhenMoneyBecomesLessImportantPage() {
             For many people, the first financial milestone is simple: to reach
             a point where work is no longer required for survival. That is a
             major shift.
+          </p>
+
+          <p>
+            Many people spend years trying to reach stability, freedom, and
+            enough. But once survival pressure reduces, a new question often
+            appears: how should life be lived now?
           </p>
 
           <p>But there is another shift beyond that.</p>
@@ -132,6 +139,38 @@ export default function WhenMoneyBecomesLessImportantPage() {
         </section>
 
         <section className="panel prose">
+          <h2>When Money Stops Being the Main Problem</h2>
+
+          <p>
+            Financial independence can remove the pressure to earn. But it does
+            not automatically give direction, meaning, or peace.
+          </p>
+
+          <p>
+            Many people expect freedom to feel complete. Instead, they discover
+            a quieter question: <strong>Now what?</strong>
+          </p>
+
+          <p>
+            This is an important turning point. Not because something has gone
+            wrong, but because life is asking a deeper question.
+          </p>
+
+          <p>
+            If that question feels familiar, this site is for that next phase.
+          </p>
+
+          <p>
+            <Link
+              className="button-link button-link--quiet"
+              href="/life-after-financial-independence"
+            >
+              Read more about life after financial independence
+            </Link>
+          </p>
+        </section>
+
+        <section className="panel prose">
           <h2>A better question</h2>
 
           <p>Instead of asking only, &ldquo;How much more do I need?&rdquo;</p>
@@ -146,6 +185,26 @@ export default function WhenMoneyBecomesLessImportantPage() {
             This page is not about ignoring money. It is about recognizing the
             point at which money has done its job, and life asks for something
             deeper.
+          </p>
+        </section>
+
+        <section className="panel prose">
+          <h2>Where to Go Next</h2>
+
+          <p>
+            If this question feels real to you, you may already be standing at
+            the beginning of a different kind of life.
+          </p>
+
+          <p>
+            Not a life centered only on earning more, but a life shaped by
+            reflection, simplification, and inner clarity.
+          </p>
+
+          <p>
+            <Link className="button-link" href="/start-here">
+              Continue to Start Here
+            </Link>
           </p>
         </section>
       </div>
