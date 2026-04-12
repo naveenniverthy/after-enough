@@ -311,6 +311,11 @@ ol {
   box-shadow: var(--shadow);
 }
 
+.callout {
+  background: linear-gradient(180deg, rgba(236, 228, 215, 0.92), rgba(251, 248, 242, 0.98));
+  border-color: var(--border-strong);
+}
+
 .panel h2 {
   margin-top: 0;
 }
