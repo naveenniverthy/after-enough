@@ -322,6 +322,14 @@ ol {
   font-size: 1.22rem;
 }
 
+.small-note {
+  margin: 1.4rem auto 0;
+  max-width: 620px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+
 .site-footer {
   border-top: 1px solid rgba(216, 208, 195, 0.85);
 }

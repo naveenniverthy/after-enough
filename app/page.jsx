@@ -24,6 +24,12 @@ const exploreLinks = [
       "A quiet reflection on sufficiency, security, and when more stops helping.",
   },
   {
+    href: "/when-money-becomes-less-important",
+    title: "When Money Matters Less",
+    description:
+      "A reflection on the stage of life where money stops ruling each decision.",
+  },
+  {
     href: "/retreats",
     title: "Retreats",
     description:
