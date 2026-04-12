@@ -21,7 +21,7 @@ const exploreLinks = [
     href: "/retreats",
     title: "Retreats",
     description:
-      "Practical guidance for retreats, ashrams, and intentional pauses from ordinary pace.",
+      "Choose spiritual retreats in India with more clarity and less confusion.",
   },
   {
     href: "/about",

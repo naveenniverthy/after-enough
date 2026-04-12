@@ -546,6 +546,486 @@ ol {
   color: inherit;
 }
 
+.retreats-page {
+  display: grid;
+  gap: 1.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.retreats-hero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem 0 1.25rem;
+  text-align: center;
+}
+
+.retreats-hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.08;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.retreats-hero-copy {
+  max-width: 720px;
+  margin: 1.35rem auto 0;
+  font-size: 1.12rem;
+  color: var(--text-soft);
+}
+
+.retreats-discernment-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.retreats-discernment-card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.retreats-discernment-card p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.retreats-section-block {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.retreats-section-block--soft {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.retreats-section-intro {
+  max-width: 720px;
+}
+
+.retreats-section-intro h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.retreats-section-intro p {
+  margin: 1rem 0 0;
+  color: var(--text-soft);
+  font-size: 1.03rem;
+}
+
+.retreats-question-card {
+  padding: 1.5rem;
+  background: rgba(251, 248, 242, 0.96);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.retreats-question-card h3,
+.retreats-key-question h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.retreats-question-card .retreat-tag-list {
+  margin-top: 1rem;
+}
+
+.retreats-key-question {
+  padding: 1.5rem;
+  background: rgba(251, 248, 242, 0.96);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.retreats-key-question p {
+  margin: 0.9rem 0 0;
+  color: var(--text-soft);
+}
+
+.retreats-repository {
+  margin-top: 0.25rem;
+}
+
+.retreats-caution-block {
+  background: rgba(251, 248, 242, 0.96);
+}
+
+.space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+.space-y-2 > * + * {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.rounded-full {
+  border-radius: 999px;
+}
+
+.rounded-3xl {
+  border-radius: 24px;
+}
+
+.rounded-\[2rem\] {
+  border-radius: 2rem;
+}
+
+.border {
+  border: 1px solid var(--border);
+}
+
+.border-neutral-200 {
+  border-color: var(--border);
+}
+
+.bg-white {
+  background: rgba(251, 248, 242, 0.96);
+}
+
+.bg-neutral-50 {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.bg-neutral-100 {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.bg-neutral-900 {
+  background: var(--text);
+}
+
+.p-5 {
+  padding: 1.25rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.text-sm {
+  font-size: 0.95rem;
+}
+
+.text-base {
+  font-size: 1.03rem;
+}
+
+.text-lg {
+  font-size: 1.15rem;
+}
+
+.text-3xl {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.15;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.tracking-tight {
+  letter-spacing: -0.03em;
+}
+
+.tracking-\[0\.2em\] {
+  letter-spacing: 0.2em;
+}
+
+.leading-7 {
+  line-height: 1.75;
+}
+
+.leading-8 {
+  line-height: 1.9;
+}
+
+.text-white {
+  color: #f9f5ee;
+}
+
+.text-neutral-500,
+.text-neutral-700 {
+  color: var(--text-soft);
+}
+
+.text-neutral-900 {
+  color: var(--text);
+}
+
+.transition {
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.hover\:bg-neutral-200:hover {
+  background: rgba(0, 0, 0, 0.09);
+}
+
+.retreat-question-grid,
+.retreat-card-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.retreat-question-card h2 {
+  font-size: 1.2rem;
+}
+
+.retreat-question-card ul {
+  margin-bottom: 0;
+}
+
+.retreat-kicker {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.retreat-filter-panel {
+  gap: 1.5rem;
+}
+
+.retreat-filter-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.retreat-filter-heading h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.retreat-filter-count {
+  margin: 0;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+.retreat-filter-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.retreat-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.retreat-field span,
+.retreat-checkbox span {
+  color: var(--text-soft);
+  font-size: 0.92rem;
+}
+
+.retreat-field input,
+.retreat-field select {
+  width: 100%;
+  padding: 0.78rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.retreat-field input:focus,
+.retreat-field select:focus {
+  outline: 1px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.retreat-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.retreat-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.retreat-card-top h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.retreat-card-top a {
+  color: var(--text-soft);
+  border-bottom: 1px solid currentColor;
+  white-space: nowrap;
+}
+
+.retreat-location,
+.retreat-notes {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.retreat-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+  margin: 0;
+}
+
+.retreat-meta div {
+  padding: 0.8rem 0.9rem;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+}
+
+.retreat-meta dt {
+  margin-bottom: 0.25rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.retreat-meta dd {
+  margin: 0;
+}
+
+.retreat-detail-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.retreat-copy-block {
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.retreat-copy-block h4 {
+  margin: 0 0 0.55rem;
+  font-size: 0.98rem;
+}
+
+.retreat-copy-block p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.retreat-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.retreat-tag {
+  display: inline-flex;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-soft);
+  font-size: 0.85rem;
+}
+
+.retreat-caution-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text-soft);
+}
+
+.retreat-caution-list li {
+  margin-bottom: 0.45rem;
+}
+
+.retreat-note-box {
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+}
+
+.retreat-note-label {
+  margin-bottom: 0.45rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.retreat-note-box p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.retreat-copy {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.retreat-copy p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
 @media (min-width: 720px) {
   .ae-stage-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -553,6 +1033,52 @@ ol {
 
   .ae-link-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .retreats-discernment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .retreat-question-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .retreat-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .retreat-filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .retreat-filter-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .retreat-field--wide {
+    grid-column: span 2;
+  }
+
+  .retreat-card-grid--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .retreat-meta--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .retreat-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1040px) {
+  .retreats-discernment-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -580,5 +1106,19 @@ ol {
 
   .ae-closing {
     padding: 3rem 0 4rem;
+  }
+
+  .retreat-filter-heading,
+  .retreat-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .retreats-page {
+    padding-top: 1.5rem;
+  }
+
+  .retreat-meta {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
