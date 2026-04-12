@@ -50,25 +50,32 @@ export const retreatAssessmentQuestions = [
   },
 ];
 
-export const retreatCategories = {
-  orientation: ["Vedanta", "Vipassana", "Yoga", "Bhakti", "Meditation", "Mixed"],
-  intensity: ["Gentle", "Moderate", "Rigorous"],
-  duration: ["2–3 days", "4–7 days", "8–14 days", "2+ weeks", "Long stay"],
-  healthFocus: [
-    "Panchakarma",
-    "Stress recovery",
-    "Rejuvenation",
-    "Yoga + Ayurveda",
-    "Medical / therapeutic",
-  ],
-  bestFor: [
-    "Beginners",
-    "Householders",
-    "Serious seekers",
-    "Repeat practitioners",
-    "Vanaprastha exploration",
-  ],
-};
+export const retreatCategories = [
+  {
+    slug: "stillness-inquiry",
+    label: "Stillness & Inquiry",
+    description:
+      "Ashrams, silence-based retreats, meditation, and teaching-centered spaces for serious inner work.",
+  },
+  {
+    slug: "healing-renewal",
+    label: "Healing & Renewal",
+    description:
+      "Ayurveda, yoga, and restorative environments focused on recovery, health, and steadiness.",
+  },
+  {
+    slug: "nature-reset",
+    label: "Nature & Reset",
+    description:
+      "Hiking, mountain, and outdoor experiences that help people step away, simplify, and regain perspective.",
+  },
+  {
+    slug: "service-devotion",
+    label: "Service & Devotion",
+    description:
+      "Seva-based, devotional, and community-centered stays rooted in practice and shared life.",
+  },
+];
 
 export const retreats = [
   {

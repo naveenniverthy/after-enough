@@ -7,6 +7,19 @@ export default function RetreatFilters({ retreats, categories }) {
   const [intensity, setIntensity] = useState("All");
   const [bestFor, setBestFor] = useState("All");
 
+  const orientationOptions = Array.from(
+    new Set(retreats.map((retreat) => retreat.orientation))
+  ).sort();
+  const intensityOptions = Array.from(
+    new Set(retreats.map((retreat) => retreat.intensity))
+  );
+  const bestForOptions = Array.from(
+    new Set(retreats.flatMap((retreat) => retreat.bestFor))
+  ).sort();
+  const categoryCards = Array.isArray(categories)
+    ? categories
+    : [];
+
   const filteredRetreats = retreats.filter((retreat) => {
     const matchOrientation =
       orientation === "All" || retreat.orientation === orientation;
@@ -18,6 +31,19 @@ export default function RetreatFilters({ retreats, categories }) {
 
   return (
     <div className="stack">
+      {categoryCards.length > 0 ? (
+        <section className="essay-card">
+          <div className="stack-grid retreat-category-grid">
+            {categoryCards.map((category) => (
+              <article key={category.slug} className="soft-card">
+                <h3>{category.label}</h3>
+                <p>{category.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section className="panel retreat-filter-panel">
         <div className="retreat-filter-heading">
           <div>
@@ -38,7 +64,7 @@ export default function RetreatFilters({ retreats, categories }) {
               onChange={(event) => setOrientation(event.target.value)}
             >
               <option>All</option>
-              {categories.orientation.map((item) => (
+              {orientationOptions.map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
@@ -51,7 +77,7 @@ export default function RetreatFilters({ retreats, categories }) {
               onChange={(event) => setIntensity(event.target.value)}
             >
               <option>All</option>
-              {categories.intensity.map((item) => (
+              {intensityOptions.map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
@@ -64,7 +90,7 @@ export default function RetreatFilters({ retreats, categories }) {
               onChange={(event) => setBestFor(event.target.value)}
             >
               <option>All</option>
-              {categories.bestFor.map((item) => (
+              {bestForOptions.map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
