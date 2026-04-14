@@ -53,6 +53,12 @@ const exploreLinks = [
     description:
       "The quiet idea behind this project and the kind of transition it hopes to support.",
   },
+  {
+    href: "/fire-calculator",
+    title: "FIRE Calculator",
+    description:
+      "A plain-English tool for Lean FIRE, Barista FIRE, Coast FIRE, and more.",
+  },
 ];
 
 import Link from "next/link";
