@@ -322,6 +322,37 @@ ol {
   padding: 1rem 0 4rem;
 }
 
+.essay-page {
+  width: min(760px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3.75rem 0 4.5rem;
+}
+
+.essay-hero {
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+
+.essay-hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.08;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.essay-intro {
+  max-width: 680px;
+  margin: 1.2rem auto 0;
+  font-size: 1.12rem;
+  color: var(--text-soft);
+}
+
+.essay-intro-emphasis {
+  color: var(--text);
+  font-style: italic;
+}
+
 .retreats-essay-hero {
   padding-top: 3.75rem;
   padding-bottom: 1.5rem;
@@ -362,6 +393,18 @@ ol {
   margin: 0 0 0.55rem;
   font-size: 1.1rem;
   line-height: 1.3;
+}
+
+.essay-card blockquote {
+  margin: 1.3rem 0;
+  padding: 0.9rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  background: rgba(236, 228, 215, 0.48);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text);
+  font-size: 1.08rem;
+  font-style: italic;
+  line-height: 1.5;
 }
 
 .essay-card p:last-child,

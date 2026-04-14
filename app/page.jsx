@@ -36,6 +36,12 @@ const exploreLinks = [
       "What actually changes after financial independence, and why freedom alone is not enough.",
   },
   {
+    href: "/besides-retire-early",
+    title: "Beyond Early Retirement",
+    description:
+      "Ways financial independence can be used for slowing down, redesigning work, and living more intentionally.",
+  },
+  {
     href: "/retreats",
     title: "Retreats",
     description:

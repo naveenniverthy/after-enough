@@ -1,319 +1,151 @@
-import PageIntro from "../../components/PageIntro";
-
 export const metadata = {
-  title: "Life After Financial Independence | After Enough",
+  title: "Should You Stop Working After Financial Independence? | After Enough",
   description:
-    "Financial independence removes pressure. But what comes after? A reflection on freedom, identity, structure, and living after enough.",
+    "Financial independence can remove pressure, but it does not answer the deeper question of how to live. A reflection on work, meaning, structure, and what comes after enough.",
 };
 
-export default function LifeAfterFinancialIndependencePage() {
+export default function LifeAfterWorkPage() {
   return (
-    <div className="container">
-      <PageIntro
-        eyebrow="Life After FI"
-        title="Financial freedom changes your life. It does not complete it."
-        intro="Financial independence creates space. It reduces pressure. It gives you time back."
-      />
+    <main className="essay-page">
+      <section className="essay-hero">
+        <p className="eyebrow">Life after enough</p>
+        <h1>Should you stop working after financial independence?</h1>
+        <p className="essay-intro">
+          Many people imagine financial independence as the moment when life
+          finally opens up. No more pressure. No more deadlines. No more need
+          to work.
+        </p>
+        <p className="essay-intro">
+          But once money is no longer the main constraint, another question
+          quietly appears:
+        </p>
+        <p className="essay-intro essay-intro-emphasis">
+          What will guide your life now?
+        </p>
+      </section>
 
-      <div className="stack">
-        <section className="essay-section">
-          <div className="essay-shell">
-            <div className="essay-card">
-              <p className="eyebrow">A quiet truth after financial independence</p>
-              <h2>Freedom can feel empty at first</h2>
+      <section className="essay-card">
+        <p>
+          Financial independence solves an important problem. It gives you
+          room. It reduces fear. It gives you choices.
+        </p>
+        <p>
+          But it does not automatically give you direction. It does not tell
+          you how to spend your mornings, what kind of work is still worth
+          doing, or what will make your days feel meaningful.
+        </p>
+        <p>
+          Many people expect freedom to feel complete the moment work becomes
+          optional. In reality, freedom often reveals a deeper challenge:
+          building a life that has shape, depth, and purpose.
+        </p>
+      </section>
 
-              <p>
-                Many people imagine that once money is no longer the main
-                pressure, life will naturally feel clear, full, and satisfying.
-              </p>
+      <section className="essay-card">
+        <h2>Work was never only about money</h2>
+        <p>
+          It is easy to think of work as just a paycheck. But for many people,
+          work has been carrying much more than that all along.
+        </p>
+        <p>Work often gives structure to the day.</p>
+        <p>It gives a place to show up.</p>
+        <p>It gives interaction, responsibility, momentum, and contribution.</p>
+        <p>
+          Even when work is tiring, it can still provide identity and
+          direction. So when people leave work completely, what they miss is
+          not always the salary. Sometimes they miss the rhythm.
+        </p>
+      </section>
 
-              <p>
-                But often, another challenge appears. Without work, deadlines,
-                shared goals, and familiar routines, there can be a strange
-                kind of emptiness. Not because anything is wrong, but because
-                structure has fallen away and something deeper has not yet taken
-                its place.
-              </p>
+      <section className="essay-card">
+        <h2>What many people really want is not &ldquo;no work&rdquo;</h2>
+        <p>
+          Very often, people do not actually want to stop all effort. They
+          want to stop compulsion.
+        </p>
+        <p>They want freedom from stress.</p>
+        <p>Freedom from office politics.</p>
+        <p>Freedom from having no control over their time.</p>
+        <p>Freedom from doing work that no longer feels worth it.</p>
+        <p>
+          That is different from wanting a life with no responsibility, no
+          engagement, and no challenge.
+        </p>
+        <p>
+          In many cases, financial independence is not the end of work. It is
+          the beginning of chosen work.
+        </p>
+      </section>
 
-              <p>
-                This is one reason life after financial independence deserves
-                its own preparation. Money can reduce pressure. It cannot
-                decide how you will live, who you will become, or what will
-                give your days meaning.
-              </p>
+      <section className="essay-card">
+        <h2>A better question</h2>
+        <p>The question may not be:</p>
+        <blockquote>&ldquo;When can I stop working?&rdquo;</blockquote>
+        <p>It may be:</p>
+        <blockquote>
+          &ldquo;What kind of work, contribution, or involvement still belongs
+          in my life once money is no longer in charge?&rdquo;
+        </blockquote>
+        <p>
+          For some, that may mean continuing in the same field, but with fewer
+          hours and clearer boundaries.
+        </p>
+        <p>
+          For others, it may mean shifting into mentoring, teaching,
+          volunteering, creating, writing, advising, building something small,
+          or serving in a quieter way.
+        </p>
+        <p>
+          The point is not to stay busy for the sake of staying busy. The point
+          is to stay alive to purpose.
+        </p>
+      </section>
 
-              <blockquote className="essay-quote">
-                Financial independence removes pressure. It does not create
-                meaning.
-              </blockquote>
+      <section className="essay-card">
+        <h2>Some simple rules for work after enough</h2>
+        <p>
+          If you continue working after financial independence, the
+          relationship to work should change.
+        </p>
+        <ul className="essay-list">
+          <li>Work with people you respect.</li>
+          <li>Do not keep work that fills life with constant stress.</li>
+          <li>Use financial freedom to say no more easily.</li>
+          <li>Do not let work steal what matters most at home.</li>
+          <li>Choose work because it fits your life, not because it owns it.</li>
+        </ul>
+      </section>
 
-              <p>
-                This is also why retreats, quiet communities, learning spaces,
-                and intentional time away can matter so much. They are not
-                escapes from life. They can be places where life is rebuilt
-                more consciously.
-              </p>
+      <section className="essay-card">
+        <h2>Before you stop working, ask yourself</h2>
+        <ul className="essay-list">
+          <li>What will give my days structure?</li>
+          <li>Where will meaning come from?</li>
+          <li>How will I stay engaged with people?</li>
+          <li>What will I still be building, learning, or contributing to?</li>
+          <li>What am I moving toward, besides rest?</li>
+        </ul>
+      </section>
 
-              <p>
-                The real question is not only,{" "}
-                <em>&ldquo;When can I stop working?&rdquo;</em> The deeper
-                question is,{" "}
-                <em>
-                  &ldquo;How do I want to live, now that I do not have to live
-                  the old way?&rdquo;
-                </em>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="essay-section">
-          <div className="essay-shell">
-            <div className="essay-card">
-              <p className="eyebrow">
-                A simple way to think about what comes next
-              </p>
-              <h2>Finding your direction after financial independence</h2>
-
-              <p>
-                When work falls away, one quiet question remains: what should
-                fill your days now?
-              </p>
-
-              <p>
-                Many people discover that freedom alone is not enough. What
-                matters is having something to move toward, something that feels
-                natural, meaningful, and worth showing up for.
-              </p>
-
-              <p>
-                A simple way to think about this comes from the idea of ikigai:
-              </p>
-
-              <ul className="essay-list">
-                <li>What do you genuinely enjoy?</li>
-                <li>What are you naturally good at?</li>
-                <li>What feels meaningful to you?</li>
-                <li>Where can you contribute to others?</li>
-              </ul>
-
-              <p>
-                You do not need perfect answers. Even small clarity in these
-                directions can bring back a sense of rhythm and purpose to your
-                days.
-              </p>
-
-              <p>
-                Life after financial independence is not about filling time. It
-                is about living in a way that feels aligned, quietly, steadily,
-                and on your own terms.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="essay-section">
-          <div className="essay-shell">
-            <div className="essay-card">
-              <p className="eyebrow">A shift that surprises many people</p>
-              <h2>You may not want to quit</h2>
-
-              <p>
-                Many people begin the journey to financial independence with
-                one clear goal: to stop working as soon as possible.
-              </p>
-
-              <p>But something interesting often happens along the way.</p>
-
-              <p>
-                As money pressure reduces, work itself starts to feel
-                different. Decisions are no longer driven by fear. There is
-                more space, more choice, and less urgency to escape.
-              </p>
-
-              <p>
-                For some, this changes everything. Work is no longer something
-                to run away from. It becomes something they can engage with
-                more freely or even enjoy in a new way.
-              </p>
-
-              <blockquote className="essay-quote">
-                The problem may not have been work. It may have been the
-                pressure around it.
-              </blockquote>
-
-              <p>
-                Life after financial independence is not only about leaving
-                your job. It is about having the freedom to choose your
-                relationship with it.
-              </p>
-
-              <p>
-                You may still choose to step away. Or you may choose to
-                continue, but on your own terms.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="panel prose">
-          <p>
-            But once the urgency fades, something quieter begins.
-          </p>
-
-          <p>
-            <strong>What is this freedom for?</strong>
-          </p>
-        </section>
-
-        <section className="panel prose">
-          <h2>There is an emotional shift no one talks about.</h2>
-
-          <p>
-            Life after financial independence is not just a financial change.
-            It is also an emotional one.
-          </p>
-
-          <p>
-            When the pressure to earn falls away, the body and mind begin to
-            slow down. There is more rest. More space. Sometimes, even a kind
-            of relief that was not expected.
-          </p>
-
-          <p>
-            These are not dramatic changes. They are quiet shifts that slowly
-            reshape how life feels.
-          </p>
-        </section>
-
-        <section className="panel prose">
-          <h2>Life after FI happens in phases.</h2>
-
-          <p>
-            There can be an early phase of excitement. Then a period of
-            adjustment. And over time, a more natural rhythm begins to form.
-          </p>
-
-          <p>
-            What you enjoy, how you spend time, and what matters most can all
-            evolve.
-          </p>
-
-          <p>
-            This is not instability. It is part of settling into a different
-            way of living.
-          </p>
-        </section>
-
-        <section className="panel prose">
-          <h2>Money becomes quieter, but not irrelevant.</h2>
-
-          <p>
-            After financial independence, money usually moves to the
-            background.
-          </p>
-
-          <p>
-            It still supports your life. But it no longer needs to dominate
-            every decision.
-          </p>
-
-          <p>
-            Spending often becomes more intentional. Less driven by habit or
-            comparison. More aligned with what actually matters.
-          </p>
-        </section>
-
-        <section className="panel prose">
-          <h2>Work does not always disappear.</h2>
-
-          <p>
-            Financial independence does not necessarily mean doing nothing.
-          </p>
-
-          <p>
-            Many people continue to work in some form. But the nature of work
-            changes.
-          </p>
-
-          <p>
-            Less about obligation. More about interest, contribution, or
-            engagement.
-          </p>
-
-          <p>Work becomes a choice, not a requirement.</p>
-        </section>
-
-        <section className="panel prose">
-          <h2>Freedom without direction can feel unclear.</h2>
-
-          <p>Work once provided structure, identity, and a sense of movement.</p>
-
-          <p>When that falls away, life can feel open. But also undefined.</p>
-
-          <p>Without some clarity, freedom can slowly turn into drifting.</p>
-        </section>
-
-        <section className="panel prose">
-          <h2>You do not retire from purpose.</h2>
-
-          <p>
-            The question after financial independence is no longer:
-            &ldquo;What must I do?&rdquo;
-          </p>
-
-          <p>
-            It becomes:
-            &ldquo;What is worth doing now?&rdquo;
-          </p>
-
-          <p>
-            This is a deeper form of freedom. Not freedom from action, but
-            freedom in choosing action.
-          </p>
-        </section>
-
-        <section className="panel prose">
-          <h2>There is no perfect life after FI.</h2>
-
-          <p>
-            Life after financial independence is not something you get right
-            once.
-          </p>
-
-          <p>It keeps adjusting.</p>
-
-          <p>
-            What works in one phase may change in another. And that is not a
-            problem. It is part of the process.
-          </p>
-        </section>
-
-        <section className="panel prose">
-          <h2>After enough, a different journey begins.</h2>
-
-          <p>Earning enough is a milestone.</p>
-
-          <p>But the deeper work begins after that.</p>
-
-          <p>
-            How to live with clarity. How to use time well. How to build a
-            life that is not centered only on earning.
-          </p>
-
-          <p>
-            Financial independence changes your situation. It also invites a
-            more conscious way of living.
-          </p>
-        </section>
-
-        <section className="panel callout prose">
-          <p>
-            <strong>Start here:</strong> Financial independence gives you
-            space. What you do with that space is the real question.
-          </p>
-        </section>
-      </div>
-    </div>
+      <section className="essay-card">
+        <h2>After enough, the real work may begin</h2>
+        <p>
+          When money is no longer the central problem, life becomes more
+          honest.
+        </p>
+        <p>
+          You can no longer hide behind the rush. You can no longer say,
+          &ldquo;Later, when things settle down.&rdquo;
+        </p>
+        <p>You have to face the deeper question directly:</p>
+        <blockquote>What is this life for now?</blockquote>
+        <p>
+          Financial independence is valuable. It is a real achievement. But it
+          is not a complete answer.
+        </p>
+        <p>Money can remove pressure.</p>
+        <p>It cannot replace purpose.</p>
+      </section>
+    </main>
   );
 }
