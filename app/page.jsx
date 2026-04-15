@@ -54,6 +54,12 @@ const exploreLinks = [
       "Ways financial independence can be used for slowing down, redesigning work, and living more intentionally.",
   },
   {
+    href: "/ikigai",
+    title: "Ikigai",
+    description:
+      "A reflective questionnaire to help you sense what kind of contribution and rhythm fit your next chapter.",
+  },
+  {
     href: "/retreats",
     title: "Retreats",
     description:
