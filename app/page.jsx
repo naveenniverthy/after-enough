@@ -36,6 +36,18 @@ const exploreLinks = [
       "What actually changes after financial independence, and why freedom alone is not enough.",
   },
   {
+    href: "/why-retirement-is-not-the-real-goal",
+    title: "Retirement Is Not the Goal",
+    description:
+      "Why meaning, structure, connection, and direction still matter after enough.",
+  },
+  {
+    href: "/the-stages-of-enough",
+    title: "The Stages of Enough",
+    description:
+      "A simple progression from dependence to independence and the deeper question after enough.",
+  },
+  {
     href: "/besides-retire-early",
     title: "Beyond Early Retirement",
     description:
