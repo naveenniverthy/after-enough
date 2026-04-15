@@ -1,8 +1,4 @@
-export const metadata = {
-  title: "After Enough",
-  description:
-    "Preparing for a slower, clearer, more meaningful second half of life.",
-};
+import Link from "next/link";
 
 const exploreLinks = [
   {
@@ -55,9 +51,9 @@ const exploreLinks = [
   },
   {
     href: "/ikigai",
-    title: "Ikigai",
+    title: "Find What to Do Next",
     description:
-      "A reflective questionnaire to help you sense what kind of contribution and rhythm fit your next chapter.",
+      "A reflective Ikigai assessment to help you sense the kind of contribution, rhythm, and life shape that fit your next chapter.",
   },
   {
     href: "/retreats",
@@ -79,87 +75,135 @@ const exploreLinks = [
   },
 ];
 
-import Link from "next/link";
+export const metadata = {
+  title: "After Enough",
+  description:
+    "A calm, practical guide to life after financial independence: meaning, simplicity, retreats, and the deeper transition after enough.",
+};
+
+function ArrowLink({ href, children }) {
+  return (
+    <Link href={href} className="hero-link">
+      <span>{children}</span>
+      <span aria-hidden="true">→</span>
+    </Link>
+  );
+}
+
+function ExploreCard({ href, title, description }) {
+  return (
+    <Link href={href} className="explore-card">
+      <div className="explore-card-inner">
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+    </Link>
+  );
+}
 
 export default function HomePage() {
   return (
-    <main className="ae-home">
-      <section className="ae-hero">
-        <p className="ae-eyebrow">Life after financial independence</p>
+    <main className="page-shell after-enough-home">
+      <section className="hero">
+        <p className="eyebrow">Life after financial independence</p>
 
-        <h1 className="ae-title">What happens after you have enough?</h1>
+        <h1>What happens after you have enough?</h1>
 
-        <p className="ae-intro">
+        <p className="hero-lead">
           Financial freedom gives you time. It does not automatically give you
-          direction. This is a space for preparing for the second half of life
-          with more clarity, simplicity, and depth.
+          direction.
         </p>
 
-        <p className="ae-subtle-line">
-          This site is for people who have achieved enough, but are quietly
-          asking what now.
+        <p className="hero-lead softer">
+          You may have done many things right. You may even be fine on paper.
+          But something can still feel unfinished.
         </p>
 
-        <div className="ae-hero-actions">
-          <Link href="/start-here" className="ae-button">
-            Start here
-          </Link>
+        <p className="hero-copy">
+          This is a space for preparing for the second half of life with more
+          clarity, simplicity, and depth.
+        </p>
+
+        <p className="hero-copy">
+          It is for people who have achieved enough, but are quietly asking:
+          what now?
+        </p>
+
+        <div className="hero-actions">
+          <ArrowLink href="/start-here">Start here</ArrowLink>
+          <ArrowLink href="/ikigai">Find what to do next</ArrowLink>
         </div>
       </section>
 
-      <section className="ae-section">
-        <div className="ae-section-inner">
-          <h2>The missing preparation</h2>
-          <p>
-            Many people spend years learning how to earn, save, invest, and
-            retire. Very few prepare for what comes after. This site is about
-            that missing preparation: how to meet freedom well, simplify life,
-            and grow into a more thoughtful way of living.
-          </p>
+      <section className="content-block">
+        <h2>The missing preparation</h2>
+        <p>
+          Many people spend years learning how to earn, save, invest, and
+          retire. Very few prepare for what comes after.
+        </p>
+        <p>
+          This site is about that missing preparation: how to meet freedom
+          well, simplify life, and grow into a more thoughtful way of living.
+        </p>
+      </section>
+
+      <section className="content-block">
+        <h2>A simple three-stage path</h2>
+        <p className="section-intro">
+          Most people move through this in order, even if the stages overlap.
+        </p>
+
+        <div className="stages-grid">
+          <article className="stage-card">
+            <p className="stage-label">Stage 1</p>
+            <h3>Build Enough</h3>
+            <p>Create financial stability and reduce dependency.</p>
+          </article>
+
+          <article className="stage-card">
+            <p className="stage-label">Stage 2</p>
+            <h3>Lighten the Mind</h3>
+            <p>
+              Simplify life, reduce pressure, and understand what still drives
+              you.
+            </p>
+          </article>
+
+          <article className="stage-card">
+            <p className="stage-label">Stage 3</p>
+            <h3>Live Differently</h3>
+            <p>
+              Move from achievement toward reflection, contribution, and inward
+              growth.
+            </p>
+          </article>
         </div>
       </section>
 
-      <section className="ae-section">
-        <div className="ae-section-inner">
-          <h2>A simple three-stage path</h2>
+      <section className="content-block">
+        <h2>Explore the site</h2>
+        <p className="section-intro">
+          Start with the larger question, then move toward tools, reflections,
+          and practical next steps.
+        </p>
 
-          <div className="ae-stage-grid">
-            <article className="ae-stage-card">
-              <h3>Build Enough</h3>
-              <p>Create financial stability and reduce dependency.</p>
-            </article>
-
-            <article className="ae-stage-card">
-              <h3>Lighten the Mind</h3>
-              <p>Simplify life, reduce pressure, and understand what still drives you.</p>
-            </article>
-
-            <article className="ae-stage-card">
-              <h3>Live Differently</h3>
-              <p>Move from achievement toward reflection, contribution, and inward growth.</p>
-            </article>
-          </div>
+        <div className="explore-grid">
+          {exploreLinks.map((item) => (
+            <ExploreCard
+              key={item.href}
+              href={item.href}
+              title={item.title}
+              description={item.description}
+            />
+          ))}
         </div>
       </section>
 
-      <section className="ae-section">
-        <div className="ae-section-inner">
-          <h2>Explore the site</h2>
-
-          <div className="ae-link-grid">
-            {exploreLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="ae-link-card">
-                <span className="ae-link-title">{item.title}</span>
-                <span className="ae-link-description">{item.description}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="ae-closing">
-        <p>Do not just retire from work. Prepare for a different way of living.</p>
-        <Link href="/start-here" className="ae-text-link">
+      <section className="closing-note">
+        <p>
+          Do not just retire from work. Prepare for a different way of living.
+        </p>
+        <Link href="/start-here" className="closing-link">
           Begin with the larger question
         </Link>
       </section>
