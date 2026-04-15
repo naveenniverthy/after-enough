@@ -26,6 +26,12 @@ const exploreLinks = [
       "A reflection on the stage of life where money stops ruling each decision.",
   },
   {
+    href: "/what-money-gets-right",
+    title: "What Money Gets Right",
+    description:
+      "A simple look at what money genuinely solves and what it cannot answer after enough.",
+  },
+  {
     href: "/life-after-financial-independence",
     title: "Life After FI",
     description:
