@@ -27,6 +27,9 @@ export const metadata = {
     title: "After Enough",
     description: siteDescription,
   },
+  verification: {
+    google: "NWakLmOh9R8RS1-kBkq9AuYZpEqQy3hyVWBaQn4iosA",
+  },
   robots: {
     index: true,
     follow: true,
