@@ -1,7 +1,10 @@
 export const metadata = {
-  title: "Should You Stop Working After Financial Independence? | After Enough",
+  title: "Should You Stop Working After Financial Independence?",
   description:
     "Financial independence can remove pressure, but it does not answer the deeper question of how to live. A reflection on work, meaning, structure, and what comes after enough.",
+  alternates: {
+    canonical: "/life-after-financial-independence",
+  },
 };
 
 export default function LifeAfterWorkPage() {

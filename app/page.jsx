@@ -82,9 +82,14 @@ const exploreLinks = [
 ];
 
 export const metadata = {
-  title: "After Enough",
+  title: {
+    absolute: "After Enough",
+  },
   description:
     "A calm, practical guide to life after financial independence: meaning, simplicity, retreats, and the deeper transition after enough.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 function ArrowLink({ href, children }) {

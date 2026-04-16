@@ -2,9 +2,12 @@ import Link from "next/link";
 import PageIntro from "../../components/PageIntro";
 
 export const metadata = {
-  title: "Why financial freedom is not enough | After Enough",
+  title: "Why Financial Freedom Is Not Enough",
   description:
     "A practical reflection on why money solves some problems but does not prepare us for freedom, stillness, or the second half of life.",
+  alternates: {
+    canonical: "/start-here",
+  },
 };
 
 export default function StartHerePage() {

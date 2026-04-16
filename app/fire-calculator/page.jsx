@@ -2,9 +2,12 @@ import PageIntro from "../../components/PageIntro";
 import FireCalculator from "../../components/FireCalculator";
 
 export const metadata = {
-  title: "Simple FIRE Calculator | After Enough",
+  title: "Simple FIRE Calculator",
   description:
     "A plain-English FIRE calculator for Lean FIRE, FIRE, Fat FIRE, Barista FIRE, and Coast FIRE.",
+  alternates: {
+    canonical: "/fire-calculator",
+  },
 };
 
 export default function FireCalculatorPage() {

@@ -1,10 +1,43 @@
 import "./globals.css";
 import Link from "next/link";
 
+const siteDescription =
+  "A calm, practical guide to life after financial independence. Explore meaning, retreats, reflection, and a modern path into a simpler second half of life.";
+
 export const metadata = {
-  title: "After Enough",
-  description:
-    "A calmer way to think about money, freedom, and life after enough.",
+  metadataBase: new URL("https://www.after-enough.com"),
+  title: {
+    default: "After Enough",
+    template: "%s | After Enough",
+  },
+  description: siteDescription,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "After Enough",
+    description: siteDescription,
+    url: "https://www.after-enough.com",
+    siteName: "After Enough",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "After Enough",
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }) {

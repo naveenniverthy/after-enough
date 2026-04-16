@@ -2,9 +2,12 @@ import RetreatFilters from "./RetreatFilters";
 import { retreatCategories, retreats } from "./data";
 
 export const metadata = {
-  title: "Retreats | After Enough",
+  title: "Retreats",
   description:
     "A quiet guide to choosing retreats with more clarity, honesty, and fit for your stage of life.",
+  alternates: {
+    canonical: "/retreats",
+  },
 };
 
 const retreatTypes = [

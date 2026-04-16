@@ -2,9 +2,12 @@ import Link from "next/link";
 import PageIntro from "../../components/PageIntro";
 
 export const metadata = {
-  title: "About this project | After Enough",
+  title: "About",
   description:
     "The idea behind After Enough: a thoughtful bridge from financial striving toward simplicity, reflection, and a more conscious second half of life.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {
