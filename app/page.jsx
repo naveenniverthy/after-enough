@@ -44,6 +44,12 @@ const exploreLinks = [
       "Why meaning, structure, connection, and direction still matter after enough.",
   },
   {
+    href: "/what-freedom-actually-demands",
+    title: "What Freedom Demands",
+    description:
+      "The hidden trade-offs of freedom, and why identity and structure still matter after enough.",
+  },
+  {
     href: "/the-stages-of-enough",
     title: "The Stages of Enough",
     description:

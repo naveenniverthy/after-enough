@@ -9,6 +9,7 @@ const routePriorities = [
   { path: "/life-after-financial-independence", priority: 0.8 },
   { path: "/path", priority: 0.8 },
   { path: "/what-money-gets-right", priority: 0.75 },
+  { path: "/what-freedom-actually-demands", priority: 0.75 },
   { path: "/the-stages-of-enough", priority: 0.75 },
   { path: "/ikigai", priority: 0.85 },
 ];
