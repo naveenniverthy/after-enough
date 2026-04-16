@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 const QUESTIONS = [
   {
@@ -210,7 +210,7 @@ const RESULT_PROFILES = [
     key: "guide-mentor",
     title: "Guide and Mentor",
     description:
-      "You seem drawn toward sharing insight, helping others grow, and offering perspective that comes from lived experience. This path fits people who want their next chapter to feel relational, useful, and quietly impactful.",
+      "You seem drawn toward sharing insight, helping others grow, and offering perspective from lived experience. This path fits people who want their next chapter to feel relational, useful, and quietly impactful.",
     looksLike: [
       "Mentoring younger professionals or students",
       "Teaching small groups or workshops",
@@ -227,11 +227,6 @@ const RESULT_PROFILES = [
       "Write down three lessons you have earned through experience",
       "Test a small teaching format before making bigger plans",
     ],
-    suggestedReads: [
-      "Life after financial independence",
-      "What kind of work still feels worth doing",
-      "How to move from success to contribution",
-    ],
   },
   {
     key: "teacher-writer",
@@ -247,24 +242,19 @@ const RESULT_PROFILES = [
     watchOuts: [
       "Avoid endless preparation without publishing",
       "Do not hide behind ideas when real contact is needed",
-      "Let your work stay simple and human, not overly polished",
+      "Let your work stay simple and human",
     ],
     nextSteps: [
       "Publish one short piece on a topic you care about",
       "Create a list of themes you keep returning to",
       "Teach one idea in plain language to one real person",
     ],
-    suggestedReads: [
-      "How to share what you know without becoming preachy",
-      "A quieter form of meaningful work",
-      "Building a body of work after enough",
-    ],
   },
   {
     key: "seeker-simplifier",
     title: "Seeker and Simplifier",
     description:
-      "You seem to be drawn less by outward achievement and more by depth, clarity, simplicity, and inward steadiness. This path fits people who want their next phase to include reflection, study, retreat, and a lighter way of living.",
+      "You seem drawn less by outward achievement and more by depth, clarity, simplicity, and inward steadiness. This path fits people who want their next phase to include reflection, study, retreat, and a lighter way of living.",
     looksLike: [
       "A slower, quieter daily rhythm",
       "Time for study, silence, retreat, or contemplation",
@@ -280,11 +270,6 @@ const RESULT_PROFILES = [
       "Reduce one recurring source of noise or excess",
       "Try a one-day or weekend retreat",
       "Create a weekly block for reflection, reading, or silence",
-    ],
-    suggestedReads: [
-      "Why life can feel incomplete even when it is fine",
-      "A gentler transition into the next chapter",
-      "Retreats and quiet spaces that may fit you",
     ],
   },
   {
@@ -308,11 +293,6 @@ const RESULT_PROFILES = [
       "Offer one skill you already have in service of others",
       "Start small and keep it sustainable",
     ],
-    suggestedReads: [
-      "Meaning through contribution",
-      "What service can look like after enough",
-      "Finding the right scale of involvement",
-    ],
   },
   {
     key: "builder-meaning",
@@ -334,11 +314,6 @@ const RESULT_PROFILES = [
       "List three things you would still enjoy building",
       "Choose one small pilot instead of a big reinvention",
       "Define what success means beyond money",
-    ],
-    suggestedReads: [
-      "What FIRE gets right — and what it misses",
-      "Work you may still want after financial independence",
-      "How to build without getting trapped again",
     ],
   },
   {
@@ -362,11 +337,6 @@ const RESULT_PROFILES = [
       "Protect recovery time as part of the path",
       "Offer support where you can be steady, not stretched thin",
     ],
-    suggestedReads: [
-      "Care as meaningful work",
-      "How to serve without burning out",
-      "Creating a sustainable rhythm of contribution",
-    ],
   },
   {
     key: "nature-retreat",
@@ -388,11 +358,6 @@ const RESULT_PROFILES = [
       "Explore one retreat that matches your comfort and budget",
       "Take regular walks without screens or stimulation",
       "Notice what environments bring you back to yourself",
-    ],
-    suggestedReads: [
-      "How to choose a retreat well",
-      "Silence, simplicity, and life after enough",
-      "What kind of retreat may fit you",
     ],
   },
   {
@@ -416,11 +381,6 @@ const RESULT_PROFILES = [
       "Keep one paid stream and one meaning stream to start",
       "Review what adds life and what adds clutter",
     ],
-    suggestedReads: [
-      "Designing a softer second chapter",
-      "Part-time work with meaning",
-      "How to create a life with room in it",
-    ],
   },
 ];
 
@@ -435,12 +395,19 @@ const PROFILE_RULES = [
   { key: "portfolio-life", tags: ["portfolio", "freedom", "creative"] },
 ];
 
-function scoreAnswers(answers) {
+function getProfileByKey(key) {
+  return RESULT_PROFILES.find((profile) => profile.key === key);
+}
+
+function scoreAnswers(answerSets) {
   const tagScores = {};
 
-  answers.forEach((answer) => {
-    answer.tags.forEach((tag) => {
-      tagScores[tag] = (tagScores[tag] || 0) + 1;
+  answerSets.forEach((answerSet) => {
+    answerSet.selections.forEach((selection, index) => {
+      const weight = index === 0 ? 1 : 0.7;
+      selection.tags.forEach((tag) => {
+        tagScores[tag] = (tagScores[tag] || 0) + weight;
+      });
     });
   });
 
@@ -452,40 +419,19 @@ function scoreAnswers(answers) {
   return { tagScores, profileScores };
 }
 
-function getProfileByKey(key) {
-  return RESULT_PROFILES.find((profile) => profile.key === key);
-}
-
-function getInitialAnswersFromUrl() {
-  if (typeof window === "undefined") return null;
-  const params = new URLSearchParams(window.location.search);
-  const raw = params.get("answers");
-  if (!raw) return null;
-
-  try {
-    const parsed = JSON.parse(decodeURIComponent(raw));
-    if (!Array.isArray(parsed)) return null;
-    return parsed;
-  } catch {
-    return null;
-  }
+function buildCombinationMessage(primary, secondary) {
+  if (!primary || !secondary) return "";
+  return `You seem to be pulled in two directions that can work well together: ${primary.title.toLowerCase()} and ${secondary.title.toLowerCase()}. That usually means your next phase does not need to be one narrow identity. It may work better as a thoughtful blend.`;
 }
 
 export default function IkigaiAssessmentPage() {
-  const [answers, setAnswers] = useState([]);
   const [started, setStarted] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [answers, setAnswers] = useState([]);
+  const [selectedIndexes, setSelectedIndexes] = useState([]);
 
-  useEffect(() => {
-    const urlAnswers = getInitialAnswersFromUrl();
-    if (urlAnswers && urlAnswers.length > 0) {
-      setAnswers(urlAnswers);
-      setStarted(true);
-    }
-  }, []);
-
-  const currentIndex = answers.length;
   const currentQuestion = QUESTIONS[currentIndex];
-  const isComplete = answers.length === QUESTIONS.length;
+  const isComplete = currentIndex >= QUESTIONS.length;
 
   const results = useMemo(() => {
     if (!isComplete) return null;
@@ -496,50 +442,72 @@ export default function IkigaiAssessmentPage() {
       ...scored,
       primary,
       secondary,
+      combinationMessage: buildCombinationMessage(primary, secondary),
     };
   }, [answers, isComplete]);
 
-  const progress = Math.round((answers.length / QUESTIONS.length) * 100);
+  const progress = Math.round((currentIndex / QUESTIONS.length) * 100);
 
-  const handleSelect = (option) => {
+  const toggleOption = (index) => {
+    setSelectedIndexes((prev) => {
+      if (prev.includes(index)) {
+        return prev.filter((item) => item !== index);
+      }
+      if (prev.length >= 2) {
+        return prev;
+      }
+      return [...prev, index];
+    });
+  };
+
+  const goNext = () => {
+    if (selectedIndexes.length === 0) return;
+
+    const sortedIndexes = [...selectedIndexes].sort((a, b) => a - b);
+    const selections = sortedIndexes.map((idx) => currentQuestion.options[idx]);
+
     const nextAnswers = [
       ...answers,
       {
         questionId: currentQuestion.id,
         text: currentQuestion.text,
-        label: option.label,
-        tags: option.tags,
+        selections,
       },
     ];
+
     setAnswers(nextAnswers);
+    setSelectedIndexes([]);
+    setCurrentIndex((prev) => prev + 1);
   };
 
-  const handleBack = () => {
+  const goBack = () => {
+    if (currentIndex === 0) return;
+
+    const previousAnswer = answers[answers.length - 1];
+    const restoredIndexes = previousAnswer.selections.map((selection) =>
+      currentQuestion
+        ? -1
+        : -1
+    );
+
     setAnswers((prev) => prev.slice(0, -1));
+    setCurrentIndex((prev) => prev - 1);
+
+    const previousQuestion = QUESTIONS[currentIndex - 1];
+    const previousSelectedIndexes = previousAnswer.selections
+      .map((selection) =>
+        previousQuestion.options.findIndex((option) => option.label === selection.label)
+      )
+      .filter((index) => index >= 0);
+
+    setSelectedIndexes(previousSelectedIndexes);
   };
 
-  const handleRestart = () => {
-    setAnswers([]);
+  const restart = () => {
     setStarted(false);
-    if (typeof window !== "undefined") {
-      const url = new URL(window.location.href);
-      url.searchParams.delete("answers");
-      window.history.replaceState({}, "", url.toString());
-    }
-  };
-
-  const handleShare = async () => {
-    if (typeof window === "undefined") return;
-    const url = new URL(window.location.href);
-    url.searchParams.set("answers", encodeURIComponent(JSON.stringify(answers)));
-    const shareUrl = url.toString();
-
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      alert("Shareable result link copied.");
-    } catch {
-      alert("Could not copy the link automatically. Please copy it from the address bar.");
-    }
+    setCurrentIndex(0);
+    setAnswers([]);
+    setSelectedIndexes([]);
   };
 
   return (
@@ -562,8 +530,8 @@ export default function IkigaiAssessmentPage() {
               what kind of life, rhythm, and contribution fits the stage they are in.
             </p>
             <p>
-              This assessment looks at energy, strengths, meaning, lifestyle fit, and
-              inner direction. It takes about 5 minutes.
+              You can choose up to two options for each question. Your result will show a
+              best fit and a second best fit.
             </p>
 
             <div className="ikigai-actions">
@@ -589,30 +557,53 @@ export default function IkigaiAssessmentPage() {
             </div>
 
             <h2 className="ikigai-question">{currentQuestion.text}</h2>
+            <p className="ikigai-helper">
+              Choose one or two options. Your first choice counts slightly more.
+            </p>
 
             <div className="ikigai-options">
-              {currentQuestion.options.map((option) => (
-                <button
-                  key={option.label}
-                  className="ikigai-option"
-                  onClick={() => handleSelect(option)}
-                >
-                  {option.label}
-                </button>
-              ))}
+              {currentQuestion.options.map((option, index) => {
+                const isSelected = selectedIndexes.includes(index);
+
+                return (
+                  <button
+                    key={option.label}
+                    type="button"
+                    className={`ikigai-option ${isSelected ? "selected" : ""}`}
+                    onClick={() => toggleOption(index)}
+                  >
+                    <span>{option.label}</span>
+                    {isSelected && <span className="ikigai-check">Selected</span>}
+                  </button>
+                );
+              })}
             </div>
+
+            {selectedIndexes.length >= 2 && (
+              <p className="ikigai-note">You can choose up to two options.</p>
+            )}
 
             <div className="ikigai-actions split">
               <button
                 className="ikigai-button secondary"
-                onClick={handleBack}
-                disabled={answers.length === 0}
+                onClick={goBack}
+                disabled={currentIndex === 0}
               >
                 Back
               </button>
-              <button className="ikigai-button ghost" onClick={handleRestart}>
-                Start over
-              </button>
+
+              <div className="ikigai-actions-inline">
+                <button className="ikigai-button ghost" onClick={restart}>
+                  Start over
+                </button>
+                <button
+                  className="ikigai-button"
+                  onClick={goNext}
+                  disabled={selectedIndexes.length === 0}
+                >
+                  Next
+                </button>
+              </div>
             </div>
           </section>
         )}
@@ -620,21 +611,29 @@ export default function IkigaiAssessmentPage() {
         {isComplete && results?.primary && (
           <>
             <section className="ikigai-card result">
-              <p className="ikigai-result-label">Your likely direction</p>
+              <p className="ikigai-result-label">Your best fit</p>
               <h2>{results.primary.title}</h2>
               <p className="ikigai-result-description">{results.primary.description}</p>
 
               {results.secondary && (
-                <p className="ikigai-secondary">
-                  You also show signs of: <strong>{results.secondary.title}</strong>
-                </p>
+                <>
+                  <p className="ikigai-result-label second">Your second best fit</p>
+                  <h3 className="ikigai-second-title">{results.secondary.title}</h3>
+                  <p className="ikigai-second-description">
+                    {results.secondary.description}
+                  </p>
+                </>
+              )}
+
+              {results.combinationMessage && (
+                <div className="ikigai-combo-box">
+                  <h3>What this combination may mean</h3>
+                  <p>{results.combinationMessage}</p>
+                </div>
               )}
 
               <div className="ikigai-actions wrap">
-                <button className="ikigai-button" onClick={handleShare}>
-                  Copy shareable result link
-                </button>
-                <button className="ikigai-button secondary" onClick={handleRestart}>
+                <button className="ikigai-button secondary" onClick={restart}>
                   Retake assessment
                 </button>
               </div>
@@ -674,16 +673,27 @@ export default function IkigaiAssessmentPage() {
               </article>
             </section>
 
-            <section className="ikigai-card">
-              <h3>Suggestions for you</h3>
-              <div className="ikigai-suggestions">
-                {results.primary.suggestedReads.map((item) => (
-                  <div className="ikigai-suggestion" key={item}>
-                    <p>{item}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
+            {results.secondary && (
+              <section className="ikigai-grid secondary-grid">
+                <article className="ikigai-card">
+                  <h3>Second-best fit in real life</h3>
+                  <ul className="ikigai-list">
+                    {results.secondary.looksLike.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+
+                <article className="ikigai-card">
+                  <h3>How the second fit can support you</h3>
+                  <p>
+                    Your second-best fit does not compete with the first one. It may show
+                    the style, setting, or supporting direction that makes your best fit
+                    more complete and more realistic.
+                  </p>
+                </article>
+              </section>
+            )}
 
             <section className="ikigai-card">
               <h3>Your answer snapshot</h3>
@@ -694,7 +704,13 @@ export default function IkigaiAssessmentPage() {
                       <p className="ikigai-answer-number">Question {index + 1}</p>
                       <p className="ikigai-answer-text">{answer.text}</p>
                     </div>
-                    <p className="ikigai-answer-choice">{answer.label}</p>
+                    <div className="ikigai-answer-choice-wrap">
+                      {answer.selections.map((selection) => (
+                        <p className="ikigai-answer-choice" key={selection.label}>
+                          {selection.label}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -796,7 +812,13 @@ export default function IkigaiAssessmentPage() {
         .ikigai-question {
           font-size: 1.5rem;
           line-height: 1.4;
+          margin-bottom: 10px;
+        }
+
+        .ikigai-helper {
           margin-bottom: 20px;
+          color: #6a6358;
+          font-size: 0.96rem;
         }
 
         .ikigai-options {
@@ -815,12 +837,34 @@ export default function IkigaiAssessmentPage() {
           line-height: 1.5;
           cursor: pointer;
           transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
         }
 
         .ikigai-option:hover {
           transform: translateY(-1px);
           border-color: #b8a88a;
           box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+        }
+
+        .ikigai-option.selected {
+          border-color: #8d7f61;
+          background: #f7f1e6;
+          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+        }
+
+        .ikigai-check {
+          font-size: 0.82rem;
+          color: #6b5e45;
+          white-space: nowrap;
+        }
+
+        .ikigai-note {
+          margin-top: 12px;
+          color: #7a6d57;
+          font-size: 0.92rem;
         }
 
         .ikigai-actions {
@@ -836,6 +880,11 @@ export default function IkigaiAssessmentPage() {
 
         .ikigai-actions.wrap {
           flex-wrap: wrap;
+        }
+
+        .ikigai-actions-inline {
+          display: flex;
+          gap: 12px;
         }
 
         .ikigai-button {
@@ -872,13 +921,25 @@ export default function IkigaiAssessmentPage() {
           margin-bottom: 8px;
         }
 
-        .ikigai-result-description {
+        .ikigai-result-label.second {
+          margin-top: 22px;
+        }
+
+        .ikigai-result-description,
+        .ikigai-second-description {
           font-size: 1.04rem;
         }
 
-        .ikigai-secondary {
-          margin-top: 10px;
-          color: #5b554c;
+        .ikigai-second-title {
+          margin-bottom: 8px;
+        }
+
+        .ikigai-combo-box {
+          border: 1px solid #e6dccb;
+          border-radius: 18px;
+          padding: 18px;
+          background: #fffaf1;
+          margin-top: 20px;
         }
 
         .ikigai-grid {
@@ -888,28 +949,15 @@ export default function IkigaiAssessmentPage() {
           margin-bottom: 20px;
         }
 
+        .secondary-grid {
+          margin-top: -4px;
+        }
+
         .ikigai-list {
           margin: 0;
           padding-left: 18px;
           color: #403c36;
           line-height: 1.8;
-        }
-
-        .ikigai-suggestions {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 14px;
-        }
-
-        .ikigai-suggestion {
-          border: 1px solid #e4dac8;
-          border-radius: 18px;
-          padding: 16px;
-          background: #fff;
-        }
-
-        .ikigai-suggestion p {
-          margin: 0;
         }
 
         .ikigai-answer-list {
@@ -942,17 +990,23 @@ export default function IkigaiAssessmentPage() {
           margin: 0;
         }
 
+        .ikigai-answer-choice-wrap {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          align-items: flex-end;
+          max-width: 320px;
+        }
+
         .ikigai-answer-choice {
           margin: 0;
           font-weight: 500;
           color: #24211d;
-          max-width: 280px;
           text-align: right;
         }
 
         @media (max-width: 800px) {
-          .ikigai-grid,
-          .ikigai-suggestions {
+          .ikigai-grid {
             grid-template-columns: 1fr;
           }
 
@@ -960,9 +1014,13 @@ export default function IkigaiAssessmentPage() {
             flex-direction: column;
           }
 
+          .ikigai-answer-choice-wrap {
+            align-items: flex-start;
+            max-width: none;
+          }
+
           .ikigai-answer-choice {
             text-align: left;
-            max-width: none;
           }
         }
 
@@ -977,7 +1035,8 @@ export default function IkigaiAssessmentPage() {
           }
 
           .ikigai-actions,
-          .ikigai-actions.split {
+          .ikigai-actions.split,
+          .ikigai-actions-inline {
             flex-direction: column;
             align-items: stretch;
           }
@@ -988,6 +1047,11 @@ export default function IkigaiAssessmentPage() {
 
           .ikigai-question {
             font-size: 1.25rem;
+          }
+
+          .ikigai-option {
+            align-items: flex-start;
+            flex-direction: column;
           }
         }
       `}</style>
