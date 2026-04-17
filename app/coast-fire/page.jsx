@@ -1,14 +1,5 @@
 import Link from "next/link";
 
-const lifeLooksLike = [
-  "Moving from a high-pressure job to a calmer one",
-  "Working part-time or taking contract work",
-  "Choosing meaning over salary",
-  "Taking a lower-paying role with better family time",
-  "Starting a small business without maximum pressure",
-  "Letting work fit your life instead of the other way around",
-];
-
 const attractions = [
   {
     title: "Less pressure",
@@ -62,8 +53,8 @@ export default function CoastFirePage() {
 
       <section className="essay-card">
         <p>
-          This is one way of reaching &ldquo;enough.&rdquo; It is not a rule,
-          but a variation based on how you choose to live.
+          This is one way of reaching &ldquo;enough.&rdquo; It reflects a
+          particular balance between lifestyle, time, and financial needs.
         </p>
       </section>
 
@@ -87,14 +78,44 @@ export default function CoastFirePage() {
       </section>
 
       <section className="essay-card">
-        <h2>What life can look like</h2>
-        <div className="grid-two">
-          {lifeLooksLike.map((item) => (
-            <article key={item} className="soft-card">
-              <p>{item}</p>
-            </article>
-          ))}
-        </div>
+        <h2>Work changes before you stop working</h2>
+        <p>
+          Coast-style financial independence does not begin when you stop
+          working. It begins when your future is already taken care of.
+        </p>
+        <p>
+          At that point, your investments are doing the long-term work. Your
+          current income no longer needs to build your future. It only needs to
+          support your present.
+        </p>
+        <p>That changes how you relate to work.</p>
+      </section>
+
+      <section className="essay-card">
+        <h2>What people start choosing</h2>
+        <ul className="essay-list">
+          <li>roles with lower pressure</li>
+          <li>work with more flexibility</li>
+          <li>environments with less urgency</li>
+          <li>work that feels sustainable over time</li>
+          <li>roles chosen for interest, not just income</li>
+        </ul>
+        <p>
+          You are no longer working for your future. Your future is already
+          compounding on its own.
+        </p>
+      </section>
+
+      <section className="essay-card">
+        <h2>What makes this different</h2>
+        <ul className="essay-list">
+          <li>You are still fully working</li>
+          <li>
+            But the long-term outcome is no longer dependent on that work
+          </li>
+          <li>Time becomes less urgent</li>
+          <li>Career decisions become less constrained</li>
+        </ul>
       </section>
 
       <section className="essay-card">
@@ -179,6 +200,21 @@ export default function CoastFirePage() {
       </section>
 
       <section className="essay-card">
+        <h2>Other ways to reach enough</h2>
+        <p>
+          <Link href="/lean-fire" className="button-link button-link--quiet">
+            Lean FIRE
+          </Link>{" "}
+          <Link href="/fat-fire" className="button-link button-link--quiet">
+            Fat FIRE
+          </Link>{" "}
+          <Link href="/barista-fire" className="button-link button-link--quiet">
+            Barista FIRE
+          </Link>
+        </p>
+      </section>
+
+      <section className="essay-card">
         <h2>A simple reflection</h2>
         <p>This is just one path.</p>
         <p>
@@ -189,8 +225,8 @@ export default function CoastFirePage() {
           <Link href="/build-enough" className="button-link">
             → Back to Build Enough
           </Link>{" "}
-          <Link href="/path" className="button-link button-link--quiet">
-            → View the full path
+          <Link href="/lighten-the-mind" className="button-link button-link--quiet">
+            → Continue to Lighten the Mind
           </Link>
         </p>
       </section>

@@ -27,8 +27,8 @@ export default function LeanFirePage() {
 
       <section className="essay-card">
         <p>
-          This is one way of reaching &ldquo;enough.&rdquo; It is not a rule,
-          but a variation based on how you choose to live.
+          This is one way of reaching &ldquo;enough.&rdquo; It reflects a
+          particular balance between lifestyle, time, and financial needs.
         </p>
       </section>
 
@@ -63,6 +63,21 @@ export default function LeanFirePage() {
         <p>
           This can feel freeing if simplicity suits you. It can feel tight if
           you are trying to force yourself into a life that does not fit.
+        </p>
+      </section>
+
+      <section className="essay-card">
+        <h2>Other ways to reach enough</h2>
+        <p>
+          <Link href="/fat-fire" className="button-link button-link--quiet">
+            Fat FIRE
+          </Link>{" "}
+          <Link href="/coast-fire" className="button-link button-link--quiet">
+            Coast FIRE
+          </Link>{" "}
+          <Link href="/barista-fire" className="button-link button-link--quiet">
+            Barista FIRE
+          </Link>
         </p>
       </section>
 

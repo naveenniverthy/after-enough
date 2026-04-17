@@ -61,6 +61,10 @@ export default function BuildEnoughPage() {
             basic needs are covered, your future is reasonably secure, and your
             life is not driven by constant financial pressure.
           </p>
+          <p>
+            The goal is not only to stop working early. It is to reach a point
+            where work is no longer the sole condition for security.
+          </p>
         </section>
 
         <section className="panel prose">
@@ -68,6 +72,12 @@ export default function BuildEnoughPage() {
           <p>
             Building enough is not about endless accumulation. It is about
             covering needs, reducing dependency, and gaining breathing room.
+          </p>
+          <p>
+            Budgeting, saving, investing, improving financial literacy, and
+            creating extra income are not ends in themselves. They are tools
+            that help you build a steadier relationship with money and a more
+            workable kind of freedom.
           </p>
 
           <h2>What helps</h2>

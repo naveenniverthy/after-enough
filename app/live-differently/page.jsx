@@ -13,6 +13,15 @@ export const metadata = {
 };
 
 const stage = stageGroups.find((item) => item.href === "/live-differently");
+const relatedLinks = stage.links.map((item) =>
+  item.href === "/about"
+    ? {
+        href: "/retreats",
+        title: "Explore Retreats",
+        description: "Find spaces for reflection, silence, and inner reset.",
+      }
+    : item
+);
 
 export default function LiveDifferentlyPage() {
   return (
@@ -38,6 +47,11 @@ export default function LiveDifferentlyPage() {
             open into reflection, contribution, and a more natural way of
             living.
           </p>
+          <p>
+            Financial independence does not have to end in retirement. It can
+            also create the possibility of a different relationship to work,
+            time, and contribution.
+          </p>
         </section>
 
         <section className="panel prose">
@@ -60,9 +74,9 @@ export default function LiveDifferentlyPage() {
           <h2>What changes here</h2>
           <p>The change is not always visible from the outside.</p>
           <p>
-            You may still work, build, or contribute. But the inner driver is
-            different. There is less urgency, less comparison, and less need to
-            prove anything.
+            You may still work, build, or contribute. The difference is that
+            action is no longer driven only by pressure. There is less urgency,
+            less comparison, and less need to prove anything.
           </p>
           <p>
             What remains is a steadier, more intentional way of living.
@@ -72,7 +86,7 @@ export default function LiveDifferentlyPage() {
         <section className="panel">
           <h2 className="section-heading">{stage.relatedHeading}</h2>
           <div className="explore-grid">
-            {stage.links.map((item) => (
+            {relatedLinks.map((item) => (
               <ExploreCard
                 key={item.href}
                 href={item.href}

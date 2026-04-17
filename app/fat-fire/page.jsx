@@ -27,8 +27,8 @@ export default function FatFirePage() {
 
       <section className="essay-card">
         <p>
-          This is one way of reaching &ldquo;enough.&rdquo; It is not a rule,
-          but a variation based on how you choose to live.
+          This is one way of reaching &ldquo;enough.&rdquo; It reflects a
+          particular balance between lifestyle, time, and financial needs.
         </p>
       </section>
 
@@ -65,6 +65,21 @@ export default function FatFirePage() {
           That is not automatically wrong. But it is worth asking whether the
           added comfort is truly needed, or whether it keeps delaying a life
           that could already become lighter.
+        </p>
+      </section>
+
+      <section className="essay-card">
+        <h2>Other ways to reach enough</h2>
+        <p>
+          <Link href="/lean-fire" className="button-link button-link--quiet">
+            Lean FIRE
+          </Link>{" "}
+          <Link href="/coast-fire" className="button-link button-link--quiet">
+            Coast FIRE
+          </Link>{" "}
+          <Link href="/barista-fire" className="button-link button-link--quiet">
+            Barista FIRE
+          </Link>
         </p>
       </section>
 

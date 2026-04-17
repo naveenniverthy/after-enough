@@ -40,6 +40,11 @@ export default function LightenTheMindPage() {
             only external. Much of it comes from habits of thinking, reacting,
             and constantly engaging with more than we need.
           </p>
+          <p>
+            Once money pressure softens, the deeper work begins. Financial
+            clarity can open the door to inner clarity, but it does not finish
+            the work for you.
+          </p>
         </section>
 
         <section className="panel prose">
@@ -47,6 +52,10 @@ export default function LightenTheMindPage() {
           <p>
             A lighter life is not only fewer expenses. It is less inner
             pressure, less noise, and more clarity about what really matters.
+          </p>
+          <p>
+            Simplicity is not deprivation. It is one way of making life more
+            inhabitable.
           </p>
 
           <h2>What helps</h2>

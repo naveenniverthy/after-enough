@@ -13,6 +13,7 @@ const sections = [
     paragraphs: [
       "The first step is not endless optimization. It is clarity. You need to know what is sufficient for a stable life, and where lifestyle inflation, fear, or habit still keep you tied to more than you need.",
       "Build enough creates room. It reduces dependency on constant earning and makes it possible to ask better questions. Without that base, deeper reflection often remains theoretical.",
+      "This is not only about reaching a number. It is about reaching a more stable relationship with money, work, and security.",
     ],
     points: [
       "Define what level of spending is truly enough for your life.",
@@ -27,6 +28,7 @@ const sections = [
     paragraphs: [
       "Once basic sufficiency is in place, the next move is simplification. Many people carry more noise than they realize: too many inputs, too much stimulation, and too many subtle forms of pressure.",
       "Lightening the mind is not withdrawal for its own sake. It is the deliberate creation of inner and outer space so attention becomes less fragmented and life becomes easier to inhabit. This is also where silence, reflection, retreats, and honest self-observation begin to matter in a more real way.",
+      "Financial clarity and inner clarity often belong together. As one strengthens, the other has more room to grow.",
     ],
     points: [
       "Reduce unnecessary obligations, possessions, and digital noise.",
@@ -42,6 +44,7 @@ const sections = [
     paragraphs: [
       "The aim is not a private inner project disconnected from the world. A mature second half of life often expresses itself through mentoring, service, steadier presence, meaningful work, and action that comes from a quieter center.",
       "Living differently means relating to action with less compulsion and more depth. The outer form may still include responsibility, projects, and contribution, but the inner posture changes.",
+      "This is why the path is larger than money alone. Building enough, lightening the mind, and living differently are connected stages of the same journey.",
     ],
     points: [
       "Offer experience through mentoring or thoughtful contribution.",
@@ -60,7 +63,7 @@ export default function PathPage() {
       <PageIntro
         eyebrow="The path"
         title="A simple path for the second half of life"
-        intro="This path is not rigid, but it offers a practical sequence for moving from financial freedom toward a deeper and more intentional way of living."
+        intro="This path is not rigid, but it offers a practical sequence for moving from financial freedom toward a deeper and more intentional way of living. It is not just a financial path, but a life path."
       />
 
       <div className="stack">
@@ -86,9 +89,8 @@ export default function PathPage() {
 
       <div className="prose" style={{ marginTop: "2rem" }}>
         <p>
-          This is not about escaping life. It is about relating to it
-          differently: with less compulsion, more simplicity, and a steadier
-          inner center from which to live.
+          The goal is not simply to retire early. It is to reduce dependence,
+          create room, and relate to time, work, and life more intentionally.
         </p>
       </div>
     </div>
