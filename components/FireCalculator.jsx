@@ -201,6 +201,10 @@ export default function FireCalculator() {
           <p className="fire-result-kicker">Your result</p>
           <h2>{data.headline}</h2>
           <p className="fire-summary-copy">{data.subline}</p>
+          <p className="fire-summary-copy">
+            You may not need the highest number. Your &ldquo;enough&rdquo;
+            depends on how you choose to live.
+          </p>
 
           <div className="fire-summary-stats">
             <div className="soft-card">

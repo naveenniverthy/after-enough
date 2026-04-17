@@ -1,91 +1,5 @@
 import Link from "next/link";
-
-const exploreLinks = [
-  {
-    href: "/start-here",
-    title: "Start Here",
-    description:
-      "Why money alone does not prepare us for the freedom we think we want.",
-  },
-  {
-    href: "/path",
-    title: "Path",
-    description:
-      "A clear framework for moving from financial independence toward inner steadiness.",
-  },
-  {
-    href: "/how-much-is-enough",
-    title: "Enough",
-    description:
-      "A quiet reflection on sufficiency, security, and when more stops helping.",
-  },
-  {
-    href: "/when-money-becomes-less-important",
-    title: "When Money Matters Less",
-    description:
-      "A reflection on the stage of life where money stops ruling each decision.",
-  },
-  {
-    href: "/what-money-gets-right",
-    title: "What Money Gets Right",
-    description:
-      "A simple look at what money genuinely solves and what it cannot answer after enough.",
-  },
-  {
-    href: "/life-after-financial-independence",
-    title: "Life After FI",
-    description:
-      "What actually changes after financial independence, and why freedom alone is not enough.",
-  },
-  {
-    href: "/why-retirement-is-not-the-real-goal",
-    title: "Retirement Is Not the Goal",
-    description:
-      "Why meaning, structure, connection, and direction still matter after enough.",
-  },
-  {
-    href: "/what-freedom-actually-demands",
-    title: "What Freedom Demands",
-    description:
-      "The hidden trade-offs of freedom, and why identity and structure still matter after enough.",
-  },
-  {
-    href: "/the-stages-of-enough",
-    title: "The Stages of Enough",
-    description:
-      "A simple progression from dependence to independence and the deeper question after enough.",
-  },
-  {
-    href: "/besides-retire-early",
-    title: "Beyond Early Retirement",
-    description:
-      "Ways financial independence can be used for slowing down, redesigning work, and living more intentionally.",
-  },
-  {
-    href: "/ikigai",
-    title: "Find What to Do Next",
-    description:
-      "A reflective Ikigai assessment to help you sense the kind of contribution, rhythm, and life shape that fit your next chapter.",
-  },
-  {
-    href: "/retreats",
-    title: "Retreats",
-    description:
-      "Choose spiritual retreats in India with more clarity and less confusion.",
-  },
-  {
-    href: "/about",
-    title: "About",
-    description:
-      "The quiet idea behind this project and the kind of transition it hopes to support.",
-  },
-  {
-    href: "/fire-calculator",
-    title: "FIRE Calculator",
-    description:
-      "A plain-English tool for Lean FIRE, Barista FIRE, Coast FIRE, and more.",
-  },
-];
+import { stageGroups } from "./home-stage-data";
 
 export const metadata = {
   title: {
@@ -103,17 +17,6 @@ function ArrowLink({ href, children }) {
     <Link href={href} className="hero-link">
       <span>{children}</span>
       <span aria-hidden="true">→</span>
-    </Link>
-  );
-}
-
-function ExploreCard({ href, title, description }) {
-  return (
-    <Link href={href} className="explore-card">
-      <div className="explore-card-inner">
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
     </Link>
   );
 }
@@ -171,47 +74,14 @@ export default function HomePage() {
         </p>
 
         <div className="stages-grid">
-          <article className="stage-card">
-            <p className="stage-label">Stage 1</p>
-            <h3>Build Enough</h3>
-            <p>Create financial stability and reduce dependency.</p>
-          </article>
-
-          <article className="stage-card">
-            <p className="stage-label">Stage 2</p>
-            <h3>Lighten the Mind</h3>
-            <p>
-              Simplify life, reduce pressure, and understand what still drives
-              you.
-            </p>
-          </article>
-
-          <article className="stage-card">
-            <p className="stage-label">Stage 3</p>
-            <h3>Live Differently</h3>
-            <p>
-              Move from achievement toward reflection, contribution, and inward
-              growth.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section className="content-block">
-        <h2>Explore the site</h2>
-        <p className="section-intro">
-          Start with the larger question, then move toward tools, reflections,
-          and practical next steps.
-        </p>
-
-        <div className="explore-grid">
-          {exploreLinks.map((item) => (
-            <ExploreCard
-              key={item.href}
-              href={item.href}
-              title={item.title}
-              description={item.description}
-            />
+          {stageGroups.map((stage) => (
+            <Link key={stage.href} href={stage.href} className="stage-card-link">
+              <article className="stage-card">
+                <p className="stage-label">{stage.label}</p>
+                <h3>{stage.title}</h3>
+                <p>{stage.description}</p>
+              </article>
+            </Link>
           ))}
         </div>
       </section>

@@ -2083,6 +2083,12 @@ ol {
   box-shadow: 0 10px 30px rgba(65, 53, 37, 0.05);
 }
 
+.stage-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .stage-card {
   padding: 1.25rem;
 }

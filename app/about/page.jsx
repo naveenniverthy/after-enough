@@ -58,6 +58,30 @@ export default function AboutPage() {
           transition itself more thoughtful and more real.
         </p>
 
+        <h2>A note from me</h2>
+        <p>
+          I created After Enough out of a personal interest in what comes after
+          financial striving becomes less central.
+        </p>
+        <p>
+          Like many people, I understand the drive to build, achieve, and
+          create security. But I am equally interested in what comes next: how
+          to live with more clarity, less pressure, and a deeper sense of
+          direction.
+        </p>
+        <p>
+          This site is my attempt to explore that transition in a thoughtful
+          and practical way.
+        </p>
+
+        <h2>Contact</h2>
+        <p>If this resonates with you, feel free to reach out.</p>
+        <p>
+          <a href="mailto:niverthynaveen@gmail.com">
+            niverthynaveen@gmail.com
+          </a>
+        </p>
+
         <p>
           <Link className="button-link button-link--quiet" href="/start-here">
             Read from the beginning
