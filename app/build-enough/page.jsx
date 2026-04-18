@@ -34,6 +34,11 @@ const firePaths = [
     title: "Barista FIRE",
     description: "Step back partially instead of all at once.",
   },
+  {
+    href: "/what-fire-is-really-about",
+    title: "What FIRE is really about",
+    description: "Beyond money — a shift from compulsion to choice.",
+  },
 ];
 
 export default function BuildEnoughPage() {
