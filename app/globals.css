@@ -242,18 +242,19 @@ ol {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.85rem 1.25rem;
-  background: var(--text);
-  color: #f9f5ee;
-  border: 1px solid var(--text);
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid #1f1f1f;
   border-radius: 999px;
   font-size: 0.96rem;
-  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 .button-link:hover,
 .button-link:focus-visible {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: #2b2b2b;
+  color: #ffffff;
+  border-color: #2b2b2b;
   transform: translateY(-1px);
   outline: none;
 }
@@ -1090,6 +1091,83 @@ ol {
   white-space: nowrap;
 }
 
+.retreat-filter-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.retreat-filter-group {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.retreat-filter-label,
+.retreat-section-intro,
+.retreat-summary-kicker,
+.retreat-mini-label,
+.retreat-compare-note,
+.retreat-filter-hint {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.retreat-filter-label,
+.retreat-mini-label,
+.retreat-summary-kicker {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.retreat-filter-chip-row,
+.retreat-active-filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.retreat-filter-chip,
+.retreat-active-filter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.6rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(251, 248, 242, 0.9);
+  color: var(--text-soft);
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.retreat-filter-chip:hover,
+.retreat-filter-chip:focus-visible,
+.retreat-filter-chip.is-active {
+  background: var(--accent-soft);
+  border-color: var(--border-strong);
+  color: var(--text);
+  outline: none;
+}
+
+.retreat-filter-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.retreat-summary-panel {
+  display: grid;
+  gap: 0.55rem;
+  background: linear-gradient(180deg, rgba(236, 228, 215, 0.7), rgba(251, 248, 242, 0.96));
+}
+
+.retreat-summary-copy {
+  margin: 0;
+  color: var(--text);
+}
+
 .retreat-filter-grid {
   display: grid;
   gap: 0.9rem;
@@ -1127,6 +1205,22 @@ ol {
   gap: 1rem;
 }
 
+.retreat-card-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.retreat-compare-toggle.is-active {
+  background: var(--accent-soft);
+}
+
+.retreat-compare-toggle:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .retreat-card-top {
   display: flex;
   align-items: flex-start;
@@ -1157,6 +1251,10 @@ ol {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem 1rem;
   margin: 0;
+}
+
+.retreat-meta--expanded {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .retreat-meta div {
@@ -1197,6 +1295,14 @@ ol {
 .retreat-copy-block p {
   margin: 0;
   color: var(--text-soft);
+}
+
+.retreat-fit-line {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  background: rgba(241, 234, 223, 0.6);
+  color: var(--text);
 }
 
 .retreat-tag-list {
@@ -1243,6 +1349,92 @@ ol {
   color: var(--text-soft);
 }
 
+.retreat-compare-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.retreat-compare-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.retreat-compare-card {
+  padding: 1.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  background: rgba(251, 248, 242, 0.9);
+}
+
+.retreat-compare-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.retreat-compare-list {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1rem 0 0;
+}
+
+.retreat-compare-list div {
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.retreat-compare-list dt {
+  margin-bottom: 0.2rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.retreat-compare-list dd {
+  margin: 0;
+}
+
+.retreat-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.guided-path-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.guided-path-card {
+  display: grid;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 1.1rem 1.15rem;
+  text-align: left;
+  background: rgba(241, 234, 223, 0.55);
+  border: 1px solid rgba(216, 208, 195, 0.9);
+  border-radius: var(--radius-sm);
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.guided-path-card:hover,
+.guided-path-card:focus-visible,
+.guided-path-card.is-active {
+  background: rgba(236, 228, 215, 0.9);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.guided-path-label {
+  font-size: 1.02rem;
+  color: var(--text);
+}
+
+.guided-path-text {
+  color: var(--text-soft);
+}
+
 .retreat-copy {
   display: grid;
   gap: 0.8rem;
@@ -1271,6 +1463,11 @@ ol {
   }
 
   .retreat-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .guided-path-grid,
+  .retreat-compare-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1341,11 +1538,19 @@ ol {
     align-items: flex-start;
   }
 
+  .retreat-filter-actions {
+    align-items: flex-start;
+  }
+
   .retreats-page {
     padding-top: 1.5rem;
   }
 
   .retreat-meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .retreat-meta--expanded {
     grid-template-columns: minmax(0, 1fr);
   }
 }

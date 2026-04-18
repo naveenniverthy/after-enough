@@ -415,6 +415,85 @@ export const retreats = [
       "A broad spiritual ecosystem for those who resonate with meditation, inwardness, and devotional discipline.",
     featured: false,
   },
+  {
+    slug: "indiahikes-himalayan-treks",
+    name: "Indiahikes Himalayan Treks",
+    location: "India (Himalayas)",
+    website: "https://indiahikes.com",
+    orientation: "Nature / Hiking",
+    primaryMode: ["Hiking", "Nature immersion", "Mental reset"],
+    intensity: "Moderate to High",
+    duration: "5–10 days",
+    silenceLevel: "Low to moderate",
+    teacherAccess: "Guide-led, not teaching-centered",
+    costStyle: "Moderate",
+    accommodation: "Basic to Moderate",
+    food: "Vegetarian",
+    bestFor: ["Nature immersion", "Physical challenge", "Mental reset"],
+    whyChoose:
+      "Combines physical effort with silence, perspective, and time in nature.",
+    whyNot:
+      "Not suitable if you want comfort, teaching, or structured spirituality.",
+    cautions: [
+      "The value here is simplicity and exposure, not inward guidance or retreat structure.",
+    ],
+    notes: "The mountain slows you down in a way nothing else does.",
+    featured: false,
+  },
+  {
+    slug: "silent-himalayan-walking-retreat",
+    name: "Silent Himalayan Walking Retreat",
+    location: "India / Nepal",
+    website: "#",
+    orientation: "Nature / Hiking",
+    primaryMode: ["Walking", "Silence", "Nature immersion"],
+    intensity: "Moderate",
+    duration: "5–8 days",
+    silenceLevel: "Moderate",
+    teacherAccess: "Lightly guided",
+    costStyle: "Moderate to High",
+    accommodation: "Basic",
+    food: "Vegetarian",
+    bestFor: [
+      "Silence outside closed settings",
+      "Nature immersion",
+      "Mental reset",
+    ],
+    whyChoose:
+      "Movement and silence can create a gentler entry into introspection than sitting indoors for long periods.",
+    whyNot:
+      "Less structure and less guidance than a more traditional retreat format.",
+    cautions: [
+      "This is better understood as a quiet walking container than as a formal spiritual retreat.",
+    ],
+    notes: "Walking replaces sitting. The mind settles differently.",
+    featured: false,
+  },
+  {
+    slug: "nature-reset-retreats",
+    name: "Nature Reset Retreats",
+    location: "Global",
+    website: "#",
+    orientation: "Nature / Hiking",
+    primaryMode: ["Rest", "Nature", "Reset"],
+    intensity: "Low to Moderate",
+    duration: "3–7 days",
+    silenceLevel: "Low",
+    teacherAccess: "Usually minimal",
+    costStyle: "Moderate to High",
+    accommodation: "Comfortable",
+    food: "Varies",
+    bestFor: ["Burnout", "Stress", "First-time retreat seekers"],
+    whyChoose:
+      "Accessible and often less intimidating than a silent retreat, while still creating room to step back and breathe.",
+    whyNot:
+      "May not go deeply into self-inquiry or traditional teaching.",
+    cautions: [
+      "These are often reset experiences rather than serious spiritual containers.",
+    ],
+    notes: "Sometimes distance from routine is enough to see clearly.",
+    featured: false,
+  },
 ];
 
 export const ayurvedaRetreats = [
