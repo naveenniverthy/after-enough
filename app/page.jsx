@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ExploreCard from "../components/ExploreCard";
 import { stageGroups } from "./home-stage-data";
 
 export const metadata = {
@@ -11,6 +12,90 @@ export const metadata = {
     canonical: "/",
   },
 };
+
+const coreJourney = [
+  {
+    href: "/start-here",
+    title: "Start Here",
+    description:
+      "Why money alone does not prepare us for the freedom we think we want.",
+  },
+  {
+    href: "/what-fire-is-really-about",
+    title: "What FIRE Is Really About",
+    description:
+      "A shift from compulsion to choice, and from pressure to intentional living.",
+  },
+  {
+    href: "/how-much-is-enough",
+    title: "Enough",
+    description:
+      "A quiet reflection on sufficiency, security, and when more stops helping.",
+  },
+  {
+    href: "/life-after-financial-independence",
+    title: "Life After FI",
+    description:
+      "What actually changes after financial independence, and why freedom alone is not enough.",
+  },
+  {
+    href: "/ikigai",
+    title: "Ikigai",
+    description:
+      "A reflective questionnaire to help you sense what kind of contribution and rhythm fit your next chapter.",
+  },
+];
+
+const exploreMore = [
+  {
+    href: "/path",
+    title: "Path",
+    description:
+      "A clear framework for moving from financial independence toward inner steadiness.",
+  },
+  {
+    href: "/when-money-becomes-less-important",
+    title: "When Money Matters Less",
+    description:
+      "A reflection on the stage of life where money stops ruling each decision.",
+  },
+  {
+    href: "/why-retirement-is-not-the-real-goal",
+    title: "Retirement Is Not the Goal",
+    description:
+      "Why meaning, structure, connection, and direction still matter after enough.",
+  },
+  {
+    href: "/the-stages-of-enough",
+    title: "The Stages of Enough",
+    description:
+      "A simple progression from dependence to independence and the deeper question after enough.",
+  },
+  {
+    href: "/besides-retire-early",
+    title: "Beyond Early Retirement",
+    description:
+      "Ways financial independence can be used for slowing down, redesigning work, and living more intentionally.",
+  },
+  {
+    href: "/retreats",
+    title: "Retreats",
+    description:
+      "Choose spiritual retreats in India with more clarity and less confusion.",
+  },
+  {
+    href: "/fire-calculator",
+    title: "FIRE Calculator",
+    description:
+      "A plain-English tool for Lean FIRE, Barista FIRE, Coast FIRE, and more.",
+  },
+  {
+    href: "/about",
+    title: "About",
+    description:
+      "The quiet idea behind this project and the kind of transition it hopes to support.",
+  },
+];
 
 function ArrowLink({ href, children }) {
   return (
@@ -40,18 +125,17 @@ export default function HomePage() {
         </p>
 
         <p className="hero-copy">
-          This is a space for preparing for the second half of life with more
-          clarity, simplicity, and depth.
+          This site is for people who have achieved enough, or are moving
+          toward it, and are quietly asking a deeper question:
         </p>
 
         <p className="hero-copy">
-          It is for people who have achieved enough, but are quietly asking:
-          what now?
+          What kind of life becomes possible when money matters less?
         </p>
 
         <div className="hero-actions">
           <ArrowLink href="/start-here">Start here</ArrowLink>
-          <ArrowLink href="/ikigai">Find what to do next</ArrowLink>
+          <ArrowLink href="/ikigai">Explore Ikigai</ArrowLink>
         </div>
       </section>
 
@@ -86,12 +170,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="closing-note">
-        <p>
+      <section className="content-block">
+        <p className="eyebrow">Best place to begin</p>
+        <h2>Follow the core journey</h2>
+
+        <div className="explore-grid">
+          {coreJourney.map((item) => (
+            <ExploreCard
+              key={item.href}
+              href={item.href}
+              title={item.title}
+              description={item.description}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="content-block">
+        <p className="eyebrow">A simple orientation</p>
+        <p className="hero-copy">
           Do not just retire from work. Prepare for a different way of living.
         </p>
+      </section>
+
+      <section className="content-block">
+        <p className="eyebrow">Explore more</p>
+        <h2>Essays, tools, and next-step resources</h2>
+
+        <div className="explore-grid">
+          {exploreMore.map((item) => (
+            <ExploreCard
+              key={item.href}
+              href={item.href}
+              title={item.title}
+              description={item.description}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="closing-note">
+        <p className="eyebrow">Begin with the larger question</p>
+        <p>
+          Financial independence can remove one kind of pressure. It does not
+          answer what your life is for. That is the question this site is built
+          around.
+        </p>
         <Link href="/start-here" className="closing-link">
-          Begin with the larger question
+          Begin now
         </Link>
       </section>
     </main>
