@@ -35,22 +35,12 @@ export default function LiveDifferentlyPage() {
       <div className="stack">
         <section className="panel prose">
           <p>
-            This stage is about living with more reflection, contribution, and
-            inward growth, instead of being driven only by achievement.
+            Live Differently is the stage where freedom becomes a way of life
+            rather than a financial milestone.
           </p>
           <p>
-            When both financial pressure and mental noise reduce, something
-            quieter becomes possible.
-          </p>
-          <p>
-            Life is no longer only about achieving or optimizing. It begins to
-            open into reflection, contribution, and a more natural way of
-            living.
-          </p>
-          <p>
-            Financial independence does not have to end in retirement. It can
-            also create the possibility of a different relationship to work,
-            time, and contribution.
+            It is not mainly about leaving work. It is about changing your
+            relationship with time, ambition, contribution, and inner growth.
           </p>
         </section>
 
@@ -98,14 +88,17 @@ export default function LiveDifferentlyPage() {
         </section>
 
         <section className="panel prose">
-          <h2>The Path</h2>
-          <p>This is not a final stage, but an ongoing way of living.</p>
+          <h2>Keep exploring</h2>
           <p>
-            <Link className="button-link" href="/path">
-              → View the full path
+            From here, you may want to explore Ikigai, retreat options, or the
+            practical question of what comes after financial independence.
+          </p>
+          <p>
+            <Link className="button-link button-link--quiet" href="/ikigai">
+              Ikigai
             </Link>{" "}
-            <Link className="button-link button-link--quiet" href="/build-enough">
-              → Start again
+            <Link className="button-link" href="/life-after-financial-independence">
+              Life After FI
             </Link>
           </p>
         </section>

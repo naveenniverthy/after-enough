@@ -51,8 +51,8 @@ export default function RetreatFilters({ retreats, categories }) {
             <h2>Find a retreat by fit, not by projection</h2>
           </div>
           <p className="retreat-filter-count">
-            {filteredRetreats.length} retreat
-            {filteredRetreats.length === 1 ? "" : "s"} found
+            {filteredRetreats.length}{" "}
+            {filteredRetreats.length === 1 ? "retreat" : "retreats"} found
           </p>
         </div>
 

@@ -26,24 +26,14 @@ export default function LightenTheMindPage() {
       <div className="stack">
         <section className="panel prose">
           <p>
-            Once survival pressure reduces, the mind still carries stress,
-            comparison, and restlessness. This stage is about simplifying
-            inwardly.
+            Lighten the Mind begins after enough starts to take shape. The
+            outer pressure may reduce, but the inner machinery often keeps
+            running.
           </p>
           <p>
-            Even when money pressure reduces, the mind does not automatically
-            become quiet. It continues to seek stimulation, validation, and
-            movement.
-          </p>
-          <p>
-            This stage is about recognizing that the weight we carry is not
-            only external. Much of it comes from habits of thinking, reacting,
-            and constantly engaging with more than we need.
-          </p>
-          <p>
-            Once money pressure softens, the deeper work begins. Financial
-            clarity can open the door to inner clarity, but it does not finish
-            the work for you.
+            This stage is about simplifying inwardly: loosening comparison,
+            reducing restlessness, and seeing that a quieter life is not the
+            same as an empty one.
           </p>
         </section>
 
@@ -95,14 +85,14 @@ export default function LightenTheMindPage() {
         </section>
 
         <section className="panel prose">
-          <h2>Next</h2>
+          <h2>Next step</h2>
           <p>
-            As the mind becomes lighter, life can begin to move in a different
-            direction.
+            When the mind becomes lighter, life itself can be reorganized
+            around a different center.
           </p>
           <p>
             <Link className="button-link" href="/live-differently">
-              → Continue to Live Differently
+              Go to Live Differently
             </Link>
           </p>
         </section>

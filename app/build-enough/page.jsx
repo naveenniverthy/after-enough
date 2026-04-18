@@ -53,22 +53,14 @@ export default function BuildEnoughPage() {
       <div className="stack">
         <section className="panel prose">
           <p>
-            Build enough so money stops being a daily source of stress. This
-            stage is about creating stability, margin, and a strong base.
+            Build Enough is the practical starting point. It is about creating
+            enough financial stability that fear reduces, dependence softens,
+            and life opens up a little.
           </p>
           <p>
-            Most people spend years chasing a number without ever questioning
-            what it represents. They assume more income automatically leads to
-            more security. But beyond a point, the relationship becomes weaker.
-          </p>
-          <p>
-            Building enough is about understanding that point. It is where your
-            basic needs are covered, your future is reasonably secure, and your
-            life is not driven by constant financial pressure.
-          </p>
-          <p>
-            The goal is not only to stop working early. It is to reach a point
-            where work is no longer the sole condition for security.
+            This does not always mean extreme early retirement. It may mean a
+            simpler life, partial freedom, flexible work, or the ability to
+            make choices from steadiness instead of pressure.
           </p>
         </section>
 
@@ -212,14 +204,14 @@ export default function BuildEnoughPage() {
         </section>
 
         <section className="panel prose">
-          <h2>Next</h2>
+          <h2>Next step</h2>
           <p>
-            Once you have built enough, the next step is not more accumulation,
-            but simplification.
+            Once enough begins to form outwardly, the next task is inward:
+            lightening the mind.
           </p>
           <p>
             <Link className="button-link" href="/lighten-the-mind">
-              → Continue to Lighten the Mind
+              Go to Lighten the Mind
             </Link>
           </p>
         </section>

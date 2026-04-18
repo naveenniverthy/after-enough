@@ -56,6 +56,7 @@ export default function RootLayout({ children }) {
             <nav className="nav-links">
               <Link href="/">Home</Link>
               <Link href="/start-here">Start Here</Link>
+              <Link href="/path">Path</Link>
               <Link href="/about">About</Link>
               <Link href="/retreats">Retreats</Link>
             </nav>

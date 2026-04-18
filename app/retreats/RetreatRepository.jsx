@@ -63,8 +63,8 @@ export default function RetreatRepository({ retreats, categories }) {
             <h2>Find a retreat by fit, not by mood</h2>
           </div>
           <p className="retreat-filter-count">
-            {filteredRetreats.length} retreat
-            {filteredRetreats.length === 1 ? "" : "s"}
+            {filteredRetreats.length}{" "}
+            {filteredRetreats.length === 1 ? "retreat" : "retreats"} found
           </p>
         </div>
 

@@ -48,52 +48,40 @@ const coreJourney = [
 
 const exploreMore = [
   {
-    href: "/path",
-    title: "Path",
+    href: "/how-much-is-enough",
+    title: "How Much Is Enough",
     description:
-      "A clear framework for moving from financial independence toward inner steadiness.",
+      "A quieter way to think about sufficiency, security, and the point where more stops helping.",
   },
   {
-    href: "/when-money-becomes-less-important",
-    title: "When Money Matters Less",
+    href: "/life-after-financial-independence",
+    title: "Life After FI",
     description:
-      "A reflection on the stage of life where money stops ruling each decision.",
+      "What changes after financial independence, and why freedom alone does not answer the question of how to live.",
   },
   {
-    href: "/why-retirement-is-not-the-real-goal",
-    title: "Retirement Is Not the Goal",
+    href: "/ikigai",
+    title: "Ikigai",
     description:
-      "Why meaning, structure, connection, and direction still matter after enough.",
-  },
-  {
-    href: "/the-stages-of-enough",
-    title: "The Stages of Enough",
-    description:
-      "A simple progression from dependence to independence and the deeper question after enough.",
-  },
-  {
-    href: "/besides-retire-early",
-    title: "Beyond Early Retirement",
-    description:
-      "Ways financial independence can be used for slowing down, redesigning work, and living more intentionally.",
+      "A practical next step for sensing what kind of contribution, rhythm, and work may fit your next chapter.",
   },
   {
     href: "/retreats",
     title: "Retreats",
     description:
-      "Choose spiritual retreats in India with more clarity and less confusion.",
+      "A thoughtful guide to choosing retreats in India with more clarity and less noise.",
   },
   {
     href: "/fire-calculator",
     title: "FIRE Calculator",
     description:
-      "A plain-English tool for Lean FIRE, Barista FIRE, Coast FIRE, and more.",
+      "A simple way to understand Lean FIRE, Coast FIRE, Barista FIRE, and other paths without heavy jargon.",
   },
   {
     href: "/about",
     title: "About",
     description:
-      "The quiet idea behind this project and the kind of transition it hopes to support.",
+      "Why this project exists, and why life after enough deserves its own conversation.",
   },
 ];
 
@@ -195,7 +183,12 @@ export default function HomePage() {
 
       <section className="content-block">
         <p className="eyebrow">Explore more</p>
-        <h2>Essays, tools, and next-step resources</h2>
+        <h2>Go a little deeper</h2>
+        <p className="section-intro">
+          Start with the path if you are new here. Then explore the pages that
+          help you think about enough, life after FI, and what to do with
+          freedom.
+        </p>
 
         <div className="explore-grid">
           {exploreMore.map((item) => (
