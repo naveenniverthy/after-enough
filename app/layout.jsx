@@ -64,6 +64,18 @@ export default function RootLayout({ children }) {
         </header>
 
         <main className="site-content">{children}</main>
+
+        <footer className="site-footer">
+          <div className="footer-inner">
+            <p>After Enough</p>
+
+            <nav className="nav-links" aria-label="Footer">
+              <Link href="/about">About</Link>
+              <Link href="/retreats">Retreats</Link>
+              <Link href="/sitemap">Sitemap</Link>
+            </nav>
+          </div>
+        </footer>
       </body>
     </html>
   );
