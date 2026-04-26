@@ -85,6 +85,60 @@ export default function LightenTheMindPage() {
         </section>
 
         <section className="panel prose">
+          <h2>Let Go, Pause, Rechoose</h2>
+
+          <p className="essay-intro-emphasis">Detach → Pause → Rechoose</p>
+
+          <div className="stack-grid stack-grid--three">
+            <article className="soft-card">
+              <h3>Detach from old roles</h3>
+              <p>
+                A lighter mind begins by loosening our grip on the roles that
+                once defined us: job title, company, network, status, career
+                identity, and the need to remain important. These roles may
+                have served us well, but they are not who we are. Lightening
+                the mind means seeing them clearly, thanking them, and gently
+                stepping back.
+              </p>
+            </article>
+
+            <article className="soft-card">
+              <h3>Allow the empty space</h3>
+              <p>
+                After detachment, there may be a quiet space. This is normal.
+                Do not rush to fill it immediately. The pause matters. It
+                prevents us from replacing one attachment with another. In this
+                space, the mind begins to breathe again.
+              </p>
+            </article>
+
+            <article className="soft-card">
+              <h3>Rechoose consciously</h3>
+              <p>
+                Once the mind is lighter, we can choose new associations with
+                more clarity. This may be a spiritual community, meditation
+                circle, fitness group, sports group, learning circle, or ikigai
+                group. The point is not to stay busy. The point is to find
+                environments aligned with our body, mind, personality, values,
+                and stage of life.
+              </p>
+            </article>
+          </div>
+
+          <p>
+            Lightening the mind is mostly about releasing old psychological
+            weight. Living differently begins when we consciously build new
+            rhythms, communities, and practices from that lighter place.
+          </p>
+
+          <p>
+            <Link className="button-link button-link--quiet" href="/live-differently">
+              Explore Living Differently →
+            </Link>
+          </p>
+        </section>
+
+        <section className="panel prose">
           <h2>Next step</h2>
           <p>
             When the mind becomes lighter, life itself can be reorganized
