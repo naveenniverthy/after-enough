@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PageIntro from "../../components/PageIntro";
+import ExploreCard from "../../components/ExploreCard";
 
 export const metadata = {
   title: "Why Financial Freedom Is Not Enough",
@@ -9,6 +10,15 @@ export const metadata = {
     canonical: "/start-here",
   },
 };
+
+const startHereCards = [
+  {
+    href: "/life-after-fi-stages",
+    title: "The stages after enough",
+    description:
+      "What actually happens after you reach financial independence.",
+  },
+];
 
 export default function StartHerePage() {
   return (
@@ -77,6 +87,17 @@ export default function StartHerePage() {
           withdrawal plan. It needs attention, honesty, and a new relationship
           with time.
         </p>
+
+        <div className="explore-grid">
+          {startHereCards.map((item) => (
+            <ExploreCard
+              key={item.href}
+              href={item.href}
+              title={item.title}
+              description={item.description}
+            />
+          ))}
+        </div>
 
         <p>
           <Link className="button-link" href="/path">
