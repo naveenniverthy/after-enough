@@ -85,6 +85,30 @@ const exploreMore = [
   },
 ];
 
+const fiFlow = [
+  "Dependence",
+  "Stability",
+  "Growth",
+  "Independence",
+  "Meaning",
+  "Inner Freedom",
+];
+
+const enoughCards = [
+  {
+    title: "Before Enough",
+    text: "The focus is earning, saving, investing, and building security.",
+  },
+  {
+    title: "At Enough",
+    text: "The focus shifts from survival to choice. You can work because you want to, not only because you must.",
+  },
+  {
+    title: "After Enough",
+    text: "The deeper work begins: meaning, contribution, simplicity, retreat, relationships, and inner freedom.",
+  },
+];
+
 function ArrowLink({ href, children }) {
   return (
     <Link href={href} className="hero-link">
@@ -125,6 +149,47 @@ export default function HomePage() {
           <ArrowLink href="/start-here">Start here</ArrowLink>
           <ArrowLink href="/ikigai">Explore Ikigai</ArrowLink>
         </div>
+      </section>
+
+      <section className="content-block fi-life-section">
+        <p className="eyebrow">After financial independence</p>
+        <h2>FI is the final stage of money. But not the final stage of life.</h2>
+        <p>
+          Money management has a natural journey: getting out of dependence,
+          becoming stable, building wealth, and finally reaching financial
+          independence. At that point, money is no longer the main problem. But
+          a new question appears: now that I have enough, how should I live?
+        </p>
+
+        <ol className="fi-flow" aria-label="The journey from money management to inner freedom">
+          {fiFlow.map((step) => (
+            <li key={step}>{step}</li>
+          ))}
+        </ol>
+
+        <p className="fi-helper-line">
+          Most financial advice helps you reach independence. After Enough helps
+          you live it.
+        </p>
+
+        <div className="enough-card-grid">
+          {enoughCards.map((card) => (
+            <article className="enough-card" key={card.title}>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </article>
+          ))}
+        </div>
+
+        <Link href="/start-here" className="hero-link fi-cta">
+          <span>Start the After Enough journey</span>
+          <span aria-hidden="true">→</span>
+        </Link>
+
+        <p className="fi-source">
+          Inspired by J.D. Roth’s framing of financial independence as the final
+          stage of money management.
+        </p>
       </section>
 
       <section className="content-block">
