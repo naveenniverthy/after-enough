@@ -2237,9 +2237,11 @@ ol {
 }
 
 .after-enough-home .eyebrow {
-  margin: 0 0 1rem;
+  margin: 0 0 0.8rem;
   color: var(--accent);
-  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  opacity: 0.82;
 }
 
 .after-enough-home .hero h1 {
@@ -2297,11 +2299,11 @@ ol {
 }
 
 .after-enough-home .content-block {
-  padding: 1.5rem 0 0;
+  padding: 2.8rem 0 0;
 }
 
 .after-enough-home .content-block + .content-block {
-  padding-top: 2.25rem;
+  padding-top: 3.1rem;
 }
 
 .after-enough-home .content-block > * + * {
@@ -2310,9 +2312,10 @@ ol {
 
 .after-enough-home .content-block h2 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.65rem, 3vw, 2.15rem);
   line-height: 1.25;
   letter-spacing: -0.02em;
+  font-weight: 500;
 }
 
 .after-enough-home .content-block p {
@@ -2327,6 +2330,15 @@ ol {
   max-width: 60ch;
 }
 
+.after-enough-home .missing-preparation {
+  padding-top: 3.4rem;
+  padding-bottom: 0.35rem;
+}
+
+.after-enough-home .core-journey-section {
+  padding-top: 3.6rem;
+}
+
 .stages-grid,
 .explore-grid {
   display: grid;
@@ -2336,6 +2348,7 @@ ol {
 
 .stage-card,
 .explore-card {
+  height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 22px;
   background: rgba(251, 248, 242, 0.94);
@@ -2344,12 +2357,14 @@ ol {
 
 .stage-card-link {
   display: block;
+  height: 100%;
   color: inherit;
   text-decoration: none;
 }
 
-.stage-card {
-  padding: 1.25rem;
+.stage-card,
+.explore-card-inner {
+  padding: 1.3rem;
 }
 
 .stage-label {
@@ -2364,8 +2379,9 @@ ol {
 .stage-card h3,
 .explore-card h3 {
   margin: 0 0 0.45rem;
-  font-size: 1.08rem;
+  font-size: 1.1rem;
   line-height: 1.35;
+  font-weight: 600;
 }
 
 .stage-card p:last-child,
@@ -2384,87 +2400,17 @@ ol {
 }
 
 .explore-card:hover,
-.explore-card:focus-visible {
+.explore-card:focus-visible,
+.stage-card-link:hover .stage-card,
+.stage-card-link:focus-visible .stage-card {
   background: rgba(241, 234, 223, 0.78);
   border-color: rgba(0, 0, 0, 0.14);
   transform: translateY(-1px);
   outline: none;
 }
 
-.explore-card-inner {
-  padding: 1.2rem;
-}
-
-.fi-life-section {
-  padding: 1.75rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 28px;
-  background: rgba(251, 248, 242, 0.72);
-  box-shadow: 0 14px 34px rgba(65, 53, 37, 0.04);
-}
-
-.fi-flow {
-  display: grid;
-  gap: 0.65rem;
-  margin: 1.5rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.fi-flow li {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-height: 3rem;
-  padding: 0.72rem 0.9rem;
-  border: 1px solid rgba(109, 91, 62, 0.18);
-  border-radius: 999px;
-  background: rgba(245, 240, 231, 0.78);
-  color: var(--text);
-  font-size: 0.94rem;
-  line-height: 1.3;
-}
-
-.fi-helper-line {
-  font-style: italic;
-}
-
-.enough-card-grid {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.enough-card {
-  padding: 1.2rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 22px;
-  background: rgba(251, 248, 242, 0.94);
-  box-shadow: 0 10px 28px rgba(65, 53, 37, 0.04);
-}
-
-.enough-card h3 {
-  margin: 0 0 0.45rem;
-  font-size: 1.06rem;
-  line-height: 1.35;
-}
-
-.after-enough-home .content-block .enough-card p {
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 0.98rem;
-  line-height: 1.75;
-}
-
-.fi-cta {
-  margin-top: 1.45rem;
-}
-
-.after-enough-home .content-block .fi-source {
-  margin-top: 1.25rem;
-  color: #8a7867;
-  font-size: 0.9rem;
-  line-height: 1.6;
+.stage-card {
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
 }
 
 .after-enough-home .closing-note {
@@ -2492,36 +2438,10 @@ ol {
   .explore-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
-  .fi-flow {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 0;
-  }
-
-  .fi-flow li {
-    justify-content: center;
-    min-height: 3.8rem;
-    padding: 0.7rem 1rem;
-    text-align: center;
-  }
-
-  .fi-flow li:not(:last-child) {
-    margin-right: 0.8rem;
-  }
-
-  .fi-flow li:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    right: -0.68rem;
-    top: 50%;
-    width: 0.55rem;
-    height: 0.55rem;
-    border-top: 1px solid rgba(109, 91, 62, 0.55);
-    border-right: 1px solid rgba(109, 91, 62, 0.55);
-    transform: translateY(-50%) rotate(45deg);
-  }
-
-  .enough-card-grid {
+@media (min-width: 900px) {
+  .secondary-explore-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -2529,5 +2449,12 @@ ol {
 @media (max-width: 640px) {
   .after-enough-home .hero {
     padding-top: 3rem;
+  }
+
+  .after-enough-home .content-block,
+  .after-enough-home .content-block + .content-block,
+  .after-enough-home .missing-preparation,
+  .after-enough-home .core-journey-section {
+    padding-top: 2.4rem;
   }
 }

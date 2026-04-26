@@ -48,24 +48,6 @@ const coreJourney = [
 
 const exploreMore = [
   {
-    href: "/how-much-is-enough",
-    title: "How Much Is Enough",
-    description:
-      "A quieter way to think about sufficiency, security, and the point where more stops helping.",
-  },
-  {
-    href: "/life-after-financial-independence",
-    title: "Life After FI",
-    description:
-      "What changes after financial independence, and why freedom alone does not answer the question of how to live.",
-  },
-  {
-    href: "/ikigai",
-    title: "Ikigai",
-    description:
-      "A practical next step for sensing what kind of contribution, rhythm, and work may fit your next chapter.",
-  },
-  {
     href: "/retreats",
     title: "Retreats",
     description:
@@ -82,30 +64,6 @@ const exploreMore = [
     title: "About",
     description:
       "Why this project exists, and why life after enough deserves its own conversation.",
-  },
-];
-
-const fiFlow = [
-  "Dependence",
-  "Stability",
-  "Growth",
-  "Independence",
-  "Meaning",
-  "Inner Freedom",
-];
-
-const enoughCards = [
-  {
-    title: "Before Enough",
-    text: "The focus is earning, saving, investing, and building security.",
-  },
-  {
-    title: "At Enough",
-    text: "The focus shifts from survival to choice. You can work because you want to, not only because you must.",
-  },
-  {
-    title: "After Enough",
-    text: "The deeper work begins: meaning, contribution, simplicity, retreat, relationships, and inner freedom.",
   },
 ];
 
@@ -151,48 +109,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="content-block fi-life-section">
-        <p className="eyebrow">After financial independence</p>
-        <h2>FI is the final stage of money. But not the final stage of life.</h2>
-        <p>
-          Money management has a natural journey: getting out of dependence,
-          becoming stable, building wealth, and finally reaching financial
-          independence. At that point, money is no longer the main problem. But
-          a new question appears: now that I have enough, how should I live?
-        </p>
-
-        <ol className="fi-flow" aria-label="The journey from money management to inner freedom">
-          {fiFlow.map((step) => (
-            <li key={step}>{step}</li>
-          ))}
-        </ol>
-
-        <p className="fi-helper-line">
-          Most financial advice helps you reach independence. After Enough helps
-          you live it.
-        </p>
-
-        <div className="enough-card-grid">
-          {enoughCards.map((card) => (
-            <article className="enough-card" key={card.title}>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-            </article>
-          ))}
-        </div>
-
-        <Link href="/start-here" className="hero-link fi-cta">
-          <span>Start the After Enough journey</span>
-          <span aria-hidden="true">→</span>
-        </Link>
-
-        <p className="fi-source">
-          Inspired by J.D. Roth’s framing of financial independence as the final
-          stage of money management.
-        </p>
-      </section>
-
-      <section className="content-block">
+      <section className="content-block missing-preparation">
         <h2>The missing preparation</h2>
         <p>
           Many people spend years learning how to earn, save, invest, and
@@ -223,7 +140,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="content-block">
+      <section className="content-block core-journey-section">
         <p className="eyebrow">Best place to begin</p>
         <h2>Follow the core journey</h2>
 
@@ -239,23 +156,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="content-block">
-        <p className="eyebrow">A simple orientation</p>
-        <p className="hero-copy">
-          Do not just retire from work. Prepare for a different way of living.
-        </p>
-      </section>
+      <section className="content-block explore-more-section">
+        <h2>Explore more</h2>
 
-      <section className="content-block">
-        <p className="eyebrow">Explore more</p>
-        <h2>Go a little deeper</h2>
-        <p className="section-intro">
-          Start with the path if you are new here. Then explore the pages that
-          help you think about enough, life after FI, and what to do with
-          freedom.
-        </p>
-
-        <div className="explore-grid">
+        <div className="explore-grid secondary-explore-grid">
           {exploreMore.map((item) => (
             <ExploreCard
               key={item.href}
