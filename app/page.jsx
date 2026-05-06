@@ -60,6 +60,12 @@ const exploreMore = [
       "A simple way to understand Lean FIRE, Coast FIRE, Barista FIRE, and other paths without heavy jargon.",
   },
   {
+    href: "/swp-calculator",
+    title: "SWP Calculator",
+    description:
+      "Estimate how long your corpus may last when you withdraw monthly income after financial independence.",
+  },
+  {
     href: "/about",
     title: "About",
     description:

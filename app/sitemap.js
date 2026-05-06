@@ -8,6 +8,7 @@ const routes = [
   { path: "/retreats", priority: 0.85, changeFrequency: "weekly" },
   { path: "/ikigai", priority: 0.85, changeFrequency: "monthly" },
   { path: "/fire-calculator", priority: 0.85, changeFrequency: "monthly" },
+  { path: "/swp-calculator", priority: 0.85, changeFrequency: "monthly" },
   {
     path: "/life-after-financial-independence",
     priority: 0.8,
