@@ -243,6 +243,7 @@ function findTargetCorpus(values) {
 export default function SwpCalculator() {
   const [mode, setMode] = useState("projection");
   const [inputs, setInputs] = useState(defaultInputs);
+  const [generatedDate, setGeneratedDate] = useState("");
 
   const data = useMemo(() => {
     const values = parseInputs(inputs);
@@ -290,6 +291,18 @@ export default function SwpCalculator() {
       ...current,
       [key]: value,
     }));
+  }
+
+  function downloadPdfSummary() {
+    setGeneratedDate(
+      new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }).format(new Date()),
+    );
+
+    window.setTimeout(() => window.print(), 0);
   }
 
   function renderField(field) {
@@ -470,6 +483,17 @@ export default function SwpCalculator() {
             </div>
           </div>
         )}
+
+        <div className="calculator-print-action">
+          <button
+            type="button"
+            className="button-link"
+            onClick={downloadPdfSummary}
+          >
+            Download PDF Summary
+          </button>
+          <p>Use your browser&rsquo;s Save as PDF option after clicking.</p>
+        </div>
       </section>
 
       <section className="panel swp-table-card" aria-labelledby="swp-table-title">
@@ -499,6 +523,171 @@ export default function SwpCalculator() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="printable-calculator-summary" aria-hidden="true">
+        <h1>SWP Calculator</h1>
+        <p className="print-date">
+          Date generated: {generatedDate || "Not generated"}
+        </p>
+
+        <h2>User inputs</h2>
+        <table>
+          <tbody>
+            <tr>
+              <th>Mode</th>
+              <td>
+                {mode === "projection"
+                  ? "Will my money last?"
+                  : "How much corpus do I need?"}
+              </td>
+            </tr>
+            {mode === "projection" ? (
+              <tr>
+                <th>Starting corpus</th>
+                <td>{formatNumber(data.values.startingCorpus)}</td>
+              </tr>
+            ) : null}
+            <tr>
+              <th>Monthly spending need</th>
+              <td>{formatNumber(data.values.monthlySpendingNeed)}</td>
+            </tr>
+            <tr>
+              <th>Expected annual return</th>
+              <td>{inputs.annualReturn}%</td>
+            </tr>
+            <tr>
+              <th>Annual inflation adjustment</th>
+              <td>{inputs.inflationAdjustment}%</td>
+            </tr>
+            <tr>
+              <th>Years to project</th>
+              <td>{data.values.years}</td>
+            </tr>
+            <tr>
+              <th>Emergency reserve</th>
+              <td>{formatNumber(data.values.emergencyReserve)}</td>
+            </tr>
+            <tr>
+              <th>Guaranteed monthly income</th>
+              <td>{formatNumber(data.values.guaranteedMonthlyIncome)}</td>
+            </tr>
+            <tr>
+              <th>Guaranteed income start year</th>
+              <td>{data.values.guaranteedStartYear}</td>
+            </tr>
+            <tr>
+              <th>Guaranteed income inflation adjustment</th>
+              <td>{inputs.guaranteedInflationAdjustment}%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Key results</h2>
+        <table>
+          <tbody>
+            <tr>
+              <th>Monthly SWP needed from corpus</th>
+              <td>{formatNumber(data.currentMonthlySwpNeeded)}</td>
+            </tr>
+            {mode === "projection" ? (
+              <>
+                <tr>
+                  <th>Starting SWP withdrawal rate</th>
+                  <td>{formatPercent(data.startingSwpWithdrawalRate)}</td>
+                </tr>
+                <tr>
+                  <th>Total withdrawn from corpus</th>
+                  <td>{formatNumber(data.projection.totalWithdrawnFromCorpus)}</td>
+                </tr>
+                <tr>
+                  <th>Total guaranteed income received</th>
+                  <td>{formatNumber(data.projection.totalGuaranteedIncome)}</td>
+                </tr>
+                <tr>
+                  <th>Final monthly spending need</th>
+                  <td>{formatNumber(data.projection.finalMonthlySpendingNeed)}</td>
+                </tr>
+                <tr>
+                  <th>Final monthly SWP from corpus</th>
+                  <td>{formatNumber(data.projection.finalMonthlySwpFromCorpus)}</td>
+                </tr>
+                <tr>
+                  <th>
+                    {data.projection.depletionMonth === null
+                      ? "Ending corpus"
+                      : "Money runs out in"}
+                  </th>
+                  <td>{projectionStatus}</td>
+                </tr>
+              </>
+            ) : (
+              <>
+                <tr>
+                  <th>Estimated required investment corpus</th>
+                  <td>{formatNumber(data.target.requiredInvestmentCorpus)}</td>
+                </tr>
+                <tr>
+                  <th>Emergency reserve</th>
+                  <td>{formatNumber(data.targetEmergencyReserve)}</td>
+                </tr>
+                <tr>
+                  <th>Total target corpus</th>
+                  <td>{formatNumber(totalTargetCorpus)}</td>
+                </tr>
+                <tr>
+                  <th>First-year SWP withdrawal rate</th>
+                  <td>{formatPercent(data.targetWithdrawalRate)}</td>
+                </tr>
+                <tr>
+                  <th>Total guaranteed income over the period</th>
+                  <td>
+                    {formatNumber(
+                      data.target.finalProjection.totalGuaranteedIncome,
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Total withdrawn from corpus</th>
+                  <td>
+                    {formatNumber(
+                      data.target.finalProjection.totalWithdrawnFromCorpus,
+                    )}
+                  </td>
+                </tr>
+              </>
+            )}
+          </tbody>
+        </table>
+
+        <h2>Yearly projection</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Annual spending need</th>
+              <th>Guaranteed income</th>
+              <th>SWP withdrawn from corpus</th>
+              <th>Year-end corpus</th>
+            </tr>
+          </thead>
+          <tbody>
+            {activeProjection.yearlyRows.map((row) => (
+              <tr key={row.year}>
+                <td>{row.year}</td>
+                <td>{formatNumber(row.annualSpendingNeed)}</td>
+                <td>{formatNumber(row.guaranteedIncome)}</td>
+                <td>{formatNumber(row.swpWithdrawnFromCorpus)}</td>
+                <td>{formatNumber(row.yearEndCorpus)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <p className="print-disclaimer">
+          This is an educational planning estimate, not financial advice. Actual
+          results may vary.
+        </p>
       </section>
 
       <div className="stack fire-explainer-stack">

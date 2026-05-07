@@ -2329,6 +2329,24 @@ ol {
   margin-top: 1rem;
 }
 
+.calculator-print-action {
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
+  margin-top: 1.25rem;
+}
+
+.calculator-print-action p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.printable-calculator-summary {
+  display: none;
+}
+
 .swp-swp-needed-box {
   margin-top: 0;
 }
@@ -2415,6 +2433,101 @@ ol {
   .swp-mode-tab {
     flex: 1 1 100%;
     border-radius: 14px;
+  }
+}
+
+@media print {
+  @page {
+    margin: 0.55in;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .printable-calculator-summary,
+  .printable-calculator-summary * {
+    visibility: visible !important;
+  }
+
+  .printable-calculator-summary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block !important;
+    width: 100%;
+    padding: 0;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.35;
+  }
+
+  .printable-calculator-summary h1 {
+    margin: 0 0 0.18in;
+    color: #000000 !important;
+    font-size: 24pt;
+    line-height: 1.15;
+  }
+
+  .printable-calculator-summary h2 {
+    break-after: avoid;
+    margin: 0.26in 0 0.08in;
+    color: #000000 !important;
+    font-size: 14pt;
+    line-height: 1.2;
+  }
+
+  .printable-calculator-summary p {
+    color: #000000 !important;
+  }
+
+  .print-date {
+    margin: 0 0 0.2in;
+    font-size: 10pt;
+  }
+
+  .printable-calculator-summary table {
+    width: 100%;
+    margin: 0 0 0.14in;
+    border-collapse: collapse;
+    break-inside: auto;
+    page-break-inside: auto;
+    color: #000000 !important;
+    font-size: 9pt;
+  }
+
+  .printable-calculator-summary tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .printable-calculator-summary th,
+  .printable-calculator-summary td {
+    padding: 0.06in 0.08in;
+    border: 1px solid #444444;
+    color: #000000 !important;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .printable-calculator-summary thead th {
+    background: #eeeeee !important;
+    font-weight: 700;
+  }
+
+  .print-disclaimer {
+    break-inside: avoid;
+    margin: 0.28in 0 0;
+    padding-top: 0.12in;
+    border-top: 1px solid #000000;
+    font-size: 9pt;
   }
 }
 

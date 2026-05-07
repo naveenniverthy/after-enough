@@ -62,6 +62,7 @@ const lifestyles = [
 export default function FireCalculator() {
   const [inputs, setInputs] = useState(defaultInputs);
   const [lifestyle, setLifestyle] = useState("normal");
+  const [generatedDate, setGeneratedDate] = useState("");
 
   const data = useMemo(() => {
     const invested = toNonNegative(inputs.invested);
@@ -122,6 +123,18 @@ export default function FireCalculator() {
       ...current,
       [key]: value,
     }));
+  }
+
+  function downloadPdfSummary() {
+    setGeneratedDate(
+      new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }).format(new Date()),
+    );
+
+    window.setTimeout(() => window.print(), 0);
   }
 
   return (
@@ -223,8 +236,91 @@ export default function FireCalculator() {
           <p className="fire-progress-text">
             You are {Math.round(data.progress)}% of the way.
           </p>
+
+          <div className="calculator-print-action">
+            <button
+              type="button"
+              className="button-link"
+              onClick={downloadPdfSummary}
+            >
+              Download PDF Summary
+            </button>
+            <p>Use your browser&rsquo;s Save as PDF option after clicking.</p>
+          </div>
         </div>
       </div>
+
+      <section className="printable-calculator-summary" aria-hidden="true">
+        <h1>Simple FIRE Calculator</h1>
+        <p className="print-date">
+          Date generated: {generatedDate || "Not generated"}
+        </p>
+
+        <h2>User inputs</h2>
+        <table>
+          <tbody>
+            <tr>
+              <th>Current investments</th>
+              <td>{formatNumber(data.invested)}</td>
+            </tr>
+            <tr>
+              <th>Monthly spending</th>
+              <td>{formatNumber(inputs.monthlySpend)}</td>
+            </tr>
+            <tr>
+              <th>Monthly part-time income</th>
+              <td>{formatNumber(inputs.partTimeIncome)}</td>
+            </tr>
+            <tr>
+              <th>Years until retirement</th>
+              <td>{inputs.years}</td>
+            </tr>
+            <tr>
+              <th>Expected return</th>
+              <td>{inputs.returnRate}%</td>
+            </tr>
+            <tr>
+              <th>Lifestyle</th>
+              <td>{lifestyles.find((item) => item.value === lifestyle)?.label}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Key results</h2>
+        <table>
+          <tbody>
+            <tr>
+              <th>Result</th>
+              <td>{data.headline}</td>
+            </tr>
+            <tr>
+              <th>Target spending per year</th>
+              <td>{formatNumber(data.adjustedSpend)}</td>
+            </tr>
+            <tr>
+              <th>Main FIRE target</th>
+              <td>{formatNumber(data.fireTarget)}</td>
+            </tr>
+            <tr>
+              <th>Barista FIRE target</th>
+              <td>{formatNumber(data.baristaTarget)}</td>
+            </tr>
+            <tr>
+              <th>Coast FIRE today</th>
+              <td>{formatNumber(data.coastTarget)}</td>
+            </tr>
+            <tr>
+              <th>Future value of current investments</th>
+              <td>{formatNumber(data.futureValue)}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p className="print-disclaimer">
+          This is an educational planning estimate, not financial advice. Actual
+          results may vary.
+        </p>
+      </section>
 
       <div className="stack fire-explainer-stack">
         <section className="panel prose">
