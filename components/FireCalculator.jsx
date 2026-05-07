@@ -2,22 +2,12 @@
 
 import { useMemo, useState } from "react";
 
-const currencyOptions = {
-  USD: { code: "USD", locale: "en-US" },
-  INR: { code: "INR", locale: "en-IN" },
-  EUR: { code: "EUR", locale: "en-IE" },
-  GBP: { code: "GBP", locale: "en-GB" },
-};
-
-function formatMoney(value, currency = "USD") {
+function formatNumber(value) {
   const amount = Number(value);
-  const config = currencyOptions[currency] || currencyOptions.USD;
 
-  if (!Number.isFinite(amount)) return "$0";
+  if (!Number.isFinite(amount)) return "0";
 
-  return new Intl.NumberFormat(config.locale, {
-    style: "currency",
-    currency: config.code,
+  return new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,
   }).format(Math.max(0, amount));
 }
@@ -70,7 +60,6 @@ const lifestyles = [
 ];
 
 export default function FireCalculator() {
-  const [currency, setCurrency] = useState("USD");
   const [inputs, setInputs] = useState(defaultInputs);
   const [lifestyle, setLifestyle] = useState("normal");
 
@@ -96,8 +85,7 @@ export default function FireCalculator() {
     const progress = fireTarget > 0 ? (invested / fireTarget) * 100 : 0;
     const safeProgress = Math.min(Math.max(progress, 0), 100);
 
-    let headline = `You need ${formatMoney(fireTarget)}.`;
-    headline = `You need ${formatMoney(fireTarget, currency)}.`;
+    let headline = `You need ${formatNumber(fireTarget)}.`;
     let subline =
       "This is based on your spending and the lifestyle you chose.";
 
@@ -127,7 +115,7 @@ export default function FireCalculator() {
       headline,
       subline,
     };
-  }, [currency, inputs, lifestyle]);
+  }, [inputs, lifestyle]);
 
   function updateField(key, value) {
     setInputs((current) => ({
@@ -142,20 +130,11 @@ export default function FireCalculator() {
         <div className="panel fire-form-card">
           <h2>Your numbers</h2>
 
-          <div className="fire-form-fields">
-            <label className="fire-field">
-              <span>Currency</span>
-              <select
-                value={currency}
-                onChange={(event) => setCurrency(event.target.value)}
-              >
-                <option value="USD">USD ($)</option>
-                <option value="INR">INR (₹)</option>
-                <option value="EUR">EUR (€)</option>
-                <option value="GBP">GBP (£)</option>
-              </select>
-            </label>
+          <div className="fire-helper-box calculator-note">
+            <p>Use any currency. Keep all money inputs in the same currency.</p>
+          </div>
 
+          <div className="fire-form-fields">
             {fields.map((field) => (
               <label key={field.key} className="fire-field">
                 <span>{field.label}</span>
@@ -209,19 +188,19 @@ export default function FireCalculator() {
           <div className="fire-summary-stats">
             <div className="soft-card">
               <span>Target spending per year</span>
-              <strong>{formatMoney(data.adjustedSpend, currency)}</strong>
+              <strong>{formatNumber(data.adjustedSpend)}</strong>
             </div>
             <div className="soft-card">
               <span>Main FIRE target</span>
-              <strong>{formatMoney(data.fireTarget, currency)}</strong>
+              <strong>{formatNumber(data.fireTarget)}</strong>
             </div>
             <div className="soft-card">
               <span>Barista FIRE target</span>
-              <strong>{formatMoney(data.baristaTarget, currency)}</strong>
+              <strong>{formatNumber(data.baristaTarget)}</strong>
             </div>
             <div className="soft-card">
               <span>Coast FIRE today</span>
-              <strong>{formatMoney(data.coastTarget, currency)}</strong>
+              <strong>{formatNumber(data.coastTarget)}</strong>
             </div>
           </div>
 
@@ -230,7 +209,7 @@ export default function FireCalculator() {
               <strong>Future value of current investments:</strong>
             </p>
             <p className="fire-big-number">
-              {formatMoney(data.futureValue, currency)}
+              {formatNumber(data.futureValue)}
             </p>
           </div>
 

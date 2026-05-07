@@ -2313,18 +2313,20 @@ ol {
   margin-bottom: 0;
 }
 
-.swp-currency-helper {
-  color: var(--text-soft);
-  font-size: 0.88rem;
-  line-height: 1.45;
-}
-
 .swp-section-note {
   max-width: 68ch;
   margin: 1.15rem 0 0;
   color: var(--text-soft);
   font-size: 0.98rem;
   line-height: 1.75;
+}
+
+.calculator-note {
+  color: var(--text-soft);
+}
+
+.calculator-note + .fire-form-fields {
+  margin-top: 1rem;
 }
 
 .swp-swp-needed-box {

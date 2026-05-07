@@ -14,30 +14,17 @@ const defaultInputs = {
   guaranteedInflationAdjustment: "0",
 };
 
-const currencyOptions = [
-  { code: "USD", label: "USD: $", prefix: "$" },
-  { code: "INR", label: "INR: ₹", prefix: "₹" },
-  { code: "EUR", label: "EUR: €", prefix: "€" },
-  { code: "GBP", label: "GBP: £", prefix: "£" },
-  { code: "CAD", label: "CAD: C$", prefix: "C$" },
-  { code: "AUD", label: "AUD: A$", prefix: "A$" },
-  { code: "CHF", label: "CHF: CHF", prefix: "CHF" },
-  { code: "JPY", label: "JPY: ¥", prefix: "¥" },
-];
-
 const mainFields = [
   {
     key: "startingCorpus",
     label: "Starting corpus",
     step: "1000",
-    isMoney: true,
     projectionOnly: true,
   },
   {
     key: "monthlySpendingNeed",
     label: "Monthly spending need",
     step: "100",
-    isMoney: true,
   },
   {
     key: "annualReturn",
@@ -58,7 +45,6 @@ const mainFields = [
     key: "emergencyReserve",
     label: "Emergency reserve to exclude",
     step: "1000",
-    isMoney: true,
   },
 ];
 
@@ -67,7 +53,6 @@ const guaranteedFields = [
     key: "guaranteedMonthlyIncome",
     label: "Guaranteed monthly income",
     step: "100",
-    isMoney: true,
   },
   {
     key: "guaranteedStartYear",
@@ -90,19 +75,14 @@ function toNonNegative(value, fallback = 0) {
   return Math.max(0, toNumber(value, fallback));
 }
 
-function formatCurrency(value, currencyCode = "USD") {
+function formatNumber(value) {
   const amount = Number(value);
-  const currency =
-    currencyOptions.find((option) => option.code === currencyCode) ||
-    currencyOptions[0];
 
-  if (!Number.isFinite(amount)) return `${currency.prefix}0`;
+  if (!Number.isFinite(amount)) return "0";
 
-  const formattedAmount = new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,
   }).format(Math.max(0, amount));
-
-  return `${currency.prefix}${formattedAmount}`;
 }
 
 function formatPercent(value) {
@@ -262,11 +242,7 @@ function findTargetCorpus(values) {
 
 export default function SwpCalculator() {
   const [mode, setMode] = useState("projection");
-  const [currency, setCurrency] = useState("USD");
   const [inputs, setInputs] = useState(defaultInputs);
-  const selectedCurrency =
-    currencyOptions.find((option) => option.code === currency) ||
-    currencyOptions[0];
 
   const data = useMemo(() => {
     const values = parseInputs(inputs);
@@ -319,10 +295,7 @@ export default function SwpCalculator() {
   function renderField(field) {
     return (
       <label key={field.key} className="fire-field">
-        <span>
-          {field.label}
-          {field.isMoney ? ` (${selectedCurrency.prefix})` : ""}
-        </span>
+        <span>{field.label}</span>
         <input
           type="number"
           inputMode="decimal"
@@ -341,7 +314,7 @@ export default function SwpCalculator() {
       : data.target.finalProjection;
   const projectionStatus =
     data.projection.depletionMonth === null
-      ? formatCurrency(data.projection.endingCorpus, currency)
+      ? formatNumber(data.projection.endingCorpus)
       : formatRunout(data.projection.depletionMonth);
   const totalTargetCorpus =
     data.target.requiredInvestmentCorpus + data.targetEmergencyReserve;
@@ -371,25 +344,11 @@ export default function SwpCalculator() {
           <h2>{mode === "projection" ? "Projection Mode" : "Target Corpus Mode"}</h2>
         </div>
 
-        <div className="fire-form-fields swp-fields-grid">
-          <label className="fire-field">
-            <span>Currency</span>
-            <select
-              value={currency}
-              onChange={(event) => setCurrency(event.target.value)}
-            >
-              {currencyOptions.map((option) => (
-                <option key={option.code} value={option.code}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-            <small className="swp-currency-helper">
-              Currency changes the display symbol only. It does not convert
-              values.
-            </small>
-          </label>
+        <p className="swp-section-note calculator-note">
+          Use any currency. Keep all money inputs in the same currency.
+        </p>
 
+        <div className="fire-form-fields swp-fields-grid">
           {mainFields
             .filter((field) => mode === "projection" || !field.projectionOnly)
             .map((field) => renderField(field))}
@@ -432,7 +391,7 @@ export default function SwpCalculator() {
             <strong>Monthly SWP needed from corpus:</strong>
           </p>
           <p className="fire-big-number">
-            {formatCurrency(data.currentMonthlySwpNeeded, currency)}
+            {formatNumber(data.currentMonthlySwpNeeded)}
           </p>
         </div>
 
@@ -445,28 +404,25 @@ export default function SwpCalculator() {
             <div className="soft-card">
               <span>Total withdrawn from corpus</span>
               <strong>
-                {formatCurrency(
-                  data.projection.totalWithdrawnFromCorpus,
-                  currency,
-                )}
+                {formatNumber(data.projection.totalWithdrawnFromCorpus)}
               </strong>
             </div>
             <div className="soft-card">
               <span>Total guaranteed income received</span>
               <strong>
-                {formatCurrency(data.projection.totalGuaranteedIncome, currency)}
+                {formatNumber(data.projection.totalGuaranteedIncome)}
               </strong>
             </div>
             <div className="soft-card">
               <span>Final monthly spending need</span>
               <strong>
-                {formatCurrency(data.projection.finalMonthlySpendingNeed, currency)}
+                {formatNumber(data.projection.finalMonthlySpendingNeed)}
               </strong>
             </div>
             <div className="soft-card">
               <span>Final monthly SWP from corpus</span>
               <strong>
-                {formatCurrency(data.projection.finalMonthlySwpFromCorpus, currency)}
+                {formatNumber(data.projection.finalMonthlySwpFromCorpus)}
               </strong>
             </div>
             <div className="soft-card">
@@ -483,18 +439,16 @@ export default function SwpCalculator() {
             <div className="soft-card">
               <span>Estimated required investment corpus</span>
               <strong>
-                {formatCurrency(data.target.requiredInvestmentCorpus, currency)}
+                {formatNumber(data.target.requiredInvestmentCorpus)}
               </strong>
             </div>
             <div className="soft-card">
               <span>Emergency reserve</span>
-              <strong>
-                {formatCurrency(data.targetEmergencyReserve, currency)}
-              </strong>
+              <strong>{formatNumber(data.targetEmergencyReserve)}</strong>
             </div>
             <div className="soft-card">
               <span>Total target corpus</span>
-              <strong>{formatCurrency(totalTargetCorpus, currency)}</strong>
+              <strong>{formatNumber(totalTargetCorpus)}</strong>
             </div>
             <div className="soft-card">
               <span>First-year SWP withdrawal rate</span>
@@ -503,18 +457,14 @@ export default function SwpCalculator() {
             <div className="soft-card">
               <span>Total guaranteed income over the period</span>
               <strong>
-                {formatCurrency(
-                  data.target.finalProjection.totalGuaranteedIncome,
-                  currency,
-                )}
+                {formatNumber(data.target.finalProjection.totalGuaranteedIncome)}
               </strong>
             </div>
             <div className="soft-card">
               <span>Total withdrawn from corpus</span>
               <strong>
-                {formatCurrency(
+                {formatNumber(
                   data.target.finalProjection.totalWithdrawnFromCorpus,
-                  currency,
                 )}
               </strong>
             </div>
@@ -540,12 +490,10 @@ export default function SwpCalculator() {
               {activeProjection.yearlyRows.map((row) => (
                 <tr key={row.year}>
                   <td>{row.year}</td>
-                  <td>{formatCurrency(row.annualSpendingNeed, currency)}</td>
-                  <td>{formatCurrency(row.guaranteedIncome, currency)}</td>
-                  <td>
-                    {formatCurrency(row.swpWithdrawnFromCorpus, currency)}
-                  </td>
-                  <td>{formatCurrency(row.yearEndCorpus, currency)}</td>
+                  <td>{formatNumber(row.annualSpendingNeed)}</td>
+                  <td>{formatNumber(row.guaranteedIncome)}</td>
+                  <td>{formatNumber(row.swpWithdrawnFromCorpus)}</td>
+                  <td>{formatNumber(row.yearEndCorpus)}</td>
                 </tr>
               ))}
             </tbody>
