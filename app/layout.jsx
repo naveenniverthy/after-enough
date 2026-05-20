@@ -1,5 +1,6 @@
 import "./globals.css";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/react";
 
 const siteDescription =
   "A calm, practical guide to life after financial independence. Explore meaning, retreats, reflection, and a modern path into a simpler second half of life.";
@@ -76,6 +77,7 @@ export default function RootLayout({ children }) {
             </nav>
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
