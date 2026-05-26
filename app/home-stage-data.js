@@ -111,6 +111,12 @@ export const stageGroups = [
           "A reflective Ikigai assessment to help you sense the kind of contribution, rhythm, and life shape that fit your next chapter.",
       },
       {
+        href: "/assessments/life-philosophy",
+        title: "Current Life Philosophy",
+        description:
+          "A thoughtful assessment to uncover the beliefs, tensions, traditions, and readings shaping your life now.",
+      },
+      {
         href: "/about",
         title: "About",
         description:

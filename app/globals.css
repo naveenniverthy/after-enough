@@ -580,6 +580,14 @@ ol {
   padding-bottom: 4rem;
 }
 
+.assessments-page {
+  padding-bottom: 4rem;
+}
+
+.assessments-section {
+  padding-top: 0.5rem;
+}
+
 .sitemap-grid {
   display: grid;
   gap: 1rem;

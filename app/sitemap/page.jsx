@@ -71,8 +71,13 @@ const sitemapSections = [
   {
     title: "Tools & Assessments",
     links: [
+      { href: "/assessments", label: "Assessments" },
       { href: "/fire-calculator", label: "FIRE Calculator" },
-      { href: "/ikigai", label: "Ikigai" },
+      { href: "/ikigai", label: "Ikigai Assessment" },
+      {
+        href: "/assessments/life-philosophy",
+        label: "Life Philosophy Assessment",
+      },
     ],
   },
   {

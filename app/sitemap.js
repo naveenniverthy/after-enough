@@ -6,7 +6,13 @@ const routes = [
   { path: "/path", priority: 0.9, changeFrequency: "monthly" },
   { path: "/about", priority: 0.8, changeFrequency: "monthly" },
   { path: "/retreats", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/assessments", priority: 0.85, changeFrequency: "monthly" },
   { path: "/ikigai", priority: 0.85, changeFrequency: "monthly" },
+  {
+    path: "/assessments/life-philosophy",
+    priority: 0.85,
+    changeFrequency: "monthly",
+  },
   { path: "/fire-calculator", priority: 0.85, changeFrequency: "monthly" },
   { path: "/swp-calculator", priority: 0.85, changeFrequency: "monthly" },
   {

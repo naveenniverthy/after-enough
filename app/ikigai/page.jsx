@@ -484,12 +484,6 @@ export default function IkigaiAssessmentPage() {
     if (currentIndex === 0) return;
 
     const previousAnswer = answers[answers.length - 1];
-    const restoredIndexes = previousAnswer.selections.map((selection) =>
-      currentQuestion
-        ? -1
-        : -1
-    );
-
     setAnswers((prev) => prev.slice(0, -1));
     setCurrentIndex((prev) => prev - 1);
 

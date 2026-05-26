@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ExploreCard from "../components/ExploreCard";
+import { assessments } from "./assessments/data";
 import { stageGroups } from "./home-stage-data";
 
 export const metadata = {
@@ -111,7 +112,7 @@ export default function HomePage() {
 
         <div className="hero-actions">
           <ArrowLink href="/start-here">Start here</ArrowLink>
-          <ArrowLink href="/ikigai">Explore Ikigai</ArrowLink>
+          <ArrowLink href="/assessments/life-philosophy">Take the assessment</ArrowLink>
         </div>
       </section>
 
@@ -157,6 +158,26 @@ export default function HomePage() {
               href={item.href}
               title={item.title}
               description={item.description}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="content-block assessments-home-section">
+        <p className="eyebrow">Reflective assessments</p>
+        <h2>Assess what is shaping you now</h2>
+        <p className="section-intro">
+          These are quiet tools for exploring direction, meaning, and the beliefs
+          beneath your next chapter.
+        </p>
+
+        <div className="explore-grid assessments-home-grid">
+          {assessments.map((assessment) => (
+            <ExploreCard
+              key={assessment.href}
+              href={assessment.href}
+              title={assessment.title}
+              description={assessment.description}
             />
           ))}
         </div>

@@ -58,6 +58,9 @@ export default function RootLayout({ children }) {
               <Link href="/">Home</Link>
               <Link href="/start-here">Start Here</Link>
               <Link href="/path">Path</Link>
+              <Link href="/assessments/life-philosophy">
+                Life Philosophy Assessment
+              </Link>
               <Link href="/about">About</Link>
               <Link href="/retreats">Retreats</Link>
             </nav>
@@ -71,6 +74,10 @@ export default function RootLayout({ children }) {
             <p>After Enough</p>
 
             <nav className="nav-links" aria-label="Footer">
+              <Link href="/assessments">Assessments</Link>
+              <Link href="/assessments/life-philosophy">
+                Life Philosophy Assessment
+              </Link>
               <Link href="/about">About</Link>
               <Link href="/retreats">Retreats</Link>
               <Link href="/sitemap">Sitemap</Link>
