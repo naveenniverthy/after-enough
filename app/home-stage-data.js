@@ -112,9 +112,9 @@ export const stageGroups = [
       },
       {
         href: "/assessments/life-philosophy",
-        title: "Current Life Philosophy",
+        title: "Life Philosophy Assessment",
         description:
-          "A thoughtful assessment to uncover the beliefs, tensions, traditions, and readings shaping your life now.",
+          "A thoughtful assessment to uncover your philosophy, freedom profile, and vision for life after enough.",
       },
       {
         href: "/about",

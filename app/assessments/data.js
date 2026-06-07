@@ -3,7 +3,7 @@ export const assessments = [
     href: "/assessments/life-philosophy",
     title: "Life Philosophy Assessment",
     description:
-      "Discover the philosophy quietly shaping your choices, ambitions, struggles, and search for meaning.",
+      "Discover your life philosophy, freedom profile, and personal vision for what comes after enough.",
   },
   {
     href: "/ikigai",

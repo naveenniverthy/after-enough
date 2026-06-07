@@ -1,9 +1,9 @@
 import LifePhilosophyAssessment from "./LifePhilosophyAssessment";
 
 export const metadata = {
-  title: "Current Life Philosophy Assessment",
+  title: "Life Philosophy Assessment",
   description:
-    "A reflective After Enough assessment that helps you understand the life philosophy shaping you now, with suggested readings and questions for deeper reflection.",
+    "A flagship After Enough assessment to understand your life philosophy, freedom profile, and vision for life after financial independence.",
   alternates: {
     canonical: "/assessments/life-philosophy",
   },
