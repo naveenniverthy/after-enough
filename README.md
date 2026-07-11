@@ -1,5 +1,6 @@
-# After Enough Trading Dashboard
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+<<<<<<< HEAD
 Morning trading dashboard for `dashboard.after-enough.com`.
 
 The app is a Next.js App Router project deployed on Vercel, backed by Supabase, and powered by Financial Modeling Prep (FMP) market/news/calendar data. It can run as a public read-only dashboard now, while keeping Cloudflare Access authentication available behind a feature flag for later.
@@ -32,12 +33,27 @@ openssl rand -hex 32
 ```
 
 Recommended for production Cloudflare Access JWT validation:
+=======
+## Getting Started
+
+First, run the development server:
 
 ```bash
-CLOUDFLARE_ACCESS_TEAM_DOMAIN=https://your-team.cloudflareaccess.com
-CLOUDFLARE_ACCESS_AUD=<Cloudflare Access application audience tag>
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+>>>>>>> parent of cbd7f1e (Trading Dashboard)
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+<<<<<<< HEAD
 Secrets are only used in server code. Do not create `NEXT_PUBLIC_*` copies of FMP, Supabase service role, cron, or admin secrets.
 
 ## Public Read-Only Mode
@@ -76,18 +92,20 @@ To return to private Cloudflare Access mode later, set:
 PUBLIC_DASHBOARD_ACCESS=false
 AUTHORIZED_EMAIL=approved-user@example.com
 ```
+=======
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+>>>>>>> parent of cbd7f1e (Trading Dashboard)
 
-## Local Development
+## Learn More
 
-```bash
-npm install
-MOCK_DATA_MODE=true DASHBOARD_DEV_BYPASS=true npm run dev
-```
+To learn more about Next.js, take a look at the following resources:
 
-Open `http://localhost:3000/dashboard`.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Production Checklist
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+<<<<<<< HEAD
 1. Create a private GitHub repository.
 2. Push the code.
 3. Create a Vercel project from the repository.
@@ -108,9 +126,13 @@ Open `http://localhost:3000/dashboard`.
 18. Confirm stale-data warnings appear when providers fail or old data is reused.
 19. Confirm `MOCK_DATA_MODE=false`.
 20. Confirm `DASHBOARD_DEV_BYPASS=false`.
+=======
+## Deploy on Vercel
+>>>>>>> parent of cbd7f1e (Trading Dashboard)
 
-## Custom Domain
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
+<<<<<<< HEAD
 In Vercel:
 
 1. Project Settings -> Domains.
@@ -298,3 +320,6 @@ Expected public-mode checks:
 - Premarket and exchange-delay quality depends on FMP subscription and licensing.
 - Market holiday handling covers common full-day US market holidays, not every early-close schedule.
 - Raw Vercel URL blocking is an app-level guard; Cloudflare Access JWT validation is the stronger authentication control.
+=======
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+>>>>>>> parent of cbd7f1e (Trading Dashboard)

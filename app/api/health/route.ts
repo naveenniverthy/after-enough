@@ -20,7 +20,7 @@ export async function GET() {
       market: status.market,
       nextScheduledRefresh: status.nextScheduledRefresh,
     });
-  } catch {
+  } catch (error) {
     const config = safeConfigSummary();
     return Response.json(
       {
@@ -31,7 +31,7 @@ export async function GET() {
         dataDelayStatus: config.dataDelayStatus,
         supabaseConfigured: config.supabaseConfigured,
         fmpConfigured: config.fmpConfigured,
-        error: "Production environment is not ready.",
+        error: error instanceof Error ? error.message : "Unknown health error",
       },
       { status: config.environment === "production" ? 500 : 200 },
     );

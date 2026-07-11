@@ -39,20 +39,11 @@ export function isPublicReadRoute(pathname: string, method: string, publicAccess
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const env = getEnv();
 
   if (pathname === "/") {
     const url = request.nextUrl.clone();
     url.pathname = "/dashboard";
     return NextResponse.redirect(url);
-  }
-
-  if (isPublicReadRoute(pathname, request.method, env.PUBLIC_DASHBOARD_ACCESS)) {
-    if (shouldBlockRawDeploymentUrl(request.nextUrl.origin, pathname)) {
-      return new Response("Forbidden", { status: 403 });
-    }
-
-    return NextResponse.next();
   }
 
   if (shouldBlockRawDeploymentUrl(request.nextUrl.origin, pathname)) {
@@ -66,6 +57,10 @@ export async function proxy(request: NextRequest) {
   }
 
   if (canUseDevBypass()) {
+    return NextResponse.next();
+  }
+
+  if (isPublicReadRoute(pathname, request.method, getEnv().PUBLIC_DASHBOARD_ACCESS)) {
     return NextResponse.next();
   }
 

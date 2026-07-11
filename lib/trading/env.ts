@@ -1,11 +1,6 @@
 import { z } from "zod";
 
-const BooleanString = z.preprocess(
-  (value) => (typeof value === "string" ? value.trim().toLowerCase() : value),
-  z
-    .union([z.boolean(), z.enum(["true", "false", "1", "0", "yes", "no", "on", "off"])])
-    .transform((value) => value === true || value === "true" || value === "1" || value === "yes" || value === "on"),
-);
+const BooleanString = z.enum(["true", "false"]).transform((value) => value === "true");
 const emptyToUndefined = (value: unknown) => (value === "" ? undefined : value);
 const OptionalString = z.preprocess(emptyToUndefined, z.string().optional());
 const OptionalUrl = z.preprocess(emptyToUndefined, z.string().url().optional());

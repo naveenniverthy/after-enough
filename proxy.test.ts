@@ -5,7 +5,7 @@ import { isPublicReadRoute, proxy, shouldBlockRawDeploymentUrl } from "./proxy";
 describe("proxy production protection", () => {
   it("blocks raw Vercel URL access when production app URL is configured", async () => {
     expect(
-      shouldBlockRawDeploymentUrl("https://after-enough.vercel.app", "/dashboard", {
+      shouldBlockRawDeploymentUrl("https://after-enough.vercel.app", {
         VERCEL_ENV: "production",
         NEXT_PUBLIC_APP_URL: "https://dashboard.after-enough.com",
         ALLOW_VERCEL_BYPASS: "false",
@@ -28,18 +28,6 @@ describe("proxy production protection", () => {
     expect(isPublicReadRoute("/api/reports", "GET", true)).toBe(true);
     expect(isPublicReadRoute("/api/reports/2026-07-11", "GET", true)).toBe(true);
     expect(isPublicReadRoute("/dashboard", "GET", false)).toBe(false);
-  });
-
-  it("PUBLIC_DASHBOARD_ACCESS=true lets /dashboard through without email or Cloudflare headers", async () => {
-    vi.stubEnv("PUBLIC_DASHBOARD_ACCESS", "true");
-    vi.stubEnv("AUTHORIZED_EMAIL", "");
-    vi.stubEnv("NEXT_PUBLIC_APP_URL", "");
-    vi.stubEnv("VERCEL_ENV", "");
-
-    const response = await proxy(new NextRequest("https://dashboard.after-enough.com/dashboard"));
-
-    expect(response.status).toBe(200);
-    expect(response.headers.get("location")).toBeNull();
   });
 
   it("does not make system status or refresh public", () => {
