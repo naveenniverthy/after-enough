@@ -90,3 +90,13 @@ export function hasValidCronSecret(request: Request) {
   const authHeader = request.headers.get("authorization") ?? "";
   return authHeader === `Bearer ${secret}`;
 }
+
+export function hasValidAdminSecret(request: Request | NextRequest) {
+  const secret = getEnv().ADMIN_DASHBOARD_SECRET;
+  if (!secret) {
+    return false;
+  }
+
+  const authHeader = request.headers.get("authorization") ?? "";
+  return authHeader === `Bearer ${secret}`;
+}

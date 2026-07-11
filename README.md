@@ -1,14 +1,16 @@
 # After Enough Trading Dashboard
 
-Private morning trading dashboard for `dashboard.after-enough.com`.
+Morning trading dashboard for `dashboard.after-enough.com`.
 
-The app is a Next.js App Router project deployed on Vercel, protected by Cloudflare Access, backed by Supabase, and powered by Financial Modeling Prep (FMP) market/news/calendar data. It keeps `MOCK_DATA_MODE=true` for development only.
+The app is a Next.js App Router project deployed on Vercel, backed by Supabase, and powered by Financial Modeling Prep (FMP) market/news/calendar data. It can run as a public read-only dashboard now, while keeping Cloudflare Access authentication available behind a feature flag for later.
 
 ## Required Environment Variables
 
 Production values:
 
 ```bash
+PUBLIC_DASHBOARD_ACCESS=true
+ADMIN_DASHBOARD_SECRET=<long-random-secret-at-least-24-chars>
 MOCK_DATA_MODE=false
 FMP_API_KEY=...
 FMP_DATA_DELAY_STATUS=delayed
@@ -23,6 +25,12 @@ GENERATE_ON_MARKET_HOLIDAYS=false
 ALLOW_VERCEL_BYPASS=false
 ```
 
+Generate the admin secret with:
+
+```bash
+openssl rand -hex 32
+```
+
 Recommended for production Cloudflare Access JWT validation:
 
 ```bash
@@ -30,7 +38,44 @@ CLOUDFLARE_ACCESS_TEAM_DOMAIN=https://your-team.cloudflareaccess.com
 CLOUDFLARE_ACCESS_AUD=<Cloudflare Access application audience tag>
 ```
 
-Secrets are only used in server code. Do not create `NEXT_PUBLIC_*` copies of FMP, Supabase service role, or cron secrets.
+Secrets are only used in server code. Do not create `NEXT_PUBLIC_*` copies of FMP, Supabase service role, cron, or admin secrets.
+
+## Public Read-Only Mode
+
+For the current deployment, set:
+
+```bash
+PUBLIC_DASHBOARD_ACCESS=true
+ADMIN_DASHBOARD_SECRET=<openssl rand -hex 32>
+MOCK_DATA_MODE=false
+DASHBOARD_DEV_BYPASS=false
+NEXT_PUBLIC_APP_URL=https://dashboard.after-enough.com
+```
+
+When public access is enabled, anonymous users can read:
+
+- `/dashboard`
+- `/api/latest-report`
+- `/api/reports`
+- `/api/reports/[date]`
+- `/api/health`
+
+These remain protected:
+
+- `/dashboard/system-status`
+- `/api/system-status`
+- `/api/admin/*`
+- `/api/refresh`
+- `/api/generate-morning-report`
+
+`/api/refresh` and admin diagnostics require `Authorization: Bearer $ADMIN_DASHBOARD_SECRET`. `/api/generate-morning-report` requires `Authorization: Bearer $CRON_SECRET`.
+
+To return to private Cloudflare Access mode later, set:
+
+```bash
+PUBLIC_DASHBOARD_ACCESS=false
+AUTHORIZED_EMAIL=approved-user@example.com
+```
 
 ## Local Development
 
@@ -53,8 +98,8 @@ Open `http://localhost:3000/dashboard`.
 8. Add `dashboard.after-enough.com` in Vercel Domains.
 9. Add the DNS record requested by Vercel, usually a `CNAME` from `dashboard` to `cname.vercel-dns.com`.
 10. Confirm HTTPS is issued by Vercel.
-11. Configure Cloudflare Access for the full subdomain.
-12. Verify authentication with the approved email.
+11. If using temporary public mode, set `PUBLIC_DASHBOARD_ACCESS=true`.
+12. If returning to private mode, configure Cloudflare Access for the full subdomain.
 13. Test `/api/health`.
 14. Test `/dashboard/system-status`.
 15. Test manual refresh.
@@ -91,7 +136,7 @@ The root path redirects to `/dashboard`. API routes are not redirected.
 
 ## Cloudflare Access
 
-Create a Cloudflare Zero Trust Access application:
+Cloudflare Access is optional while `PUBLIC_DASHBOARD_ACCESS=true`, but the code remains ready for it. To re-enable private mode, create a Cloudflare Zero Trust Access application:
 
 - Application domain: `dashboard.after-enough.com`
 - Protect full subdomain
@@ -145,7 +190,7 @@ Safe public health endpoint:
 GET /api/health
 ```
 
-It reports only safe operational fields: app status, environment, mock mode, FMP/Supabase configured, latest report timestamp, and latest report status.
+It reports only safe operational fields: app status, environment, mock mode, public access mode, FMP/Supabase configured, latest report timestamp, latest report status, market status, and next scheduled refresh.
 
 Authorized admin page:
 
@@ -162,6 +207,13 @@ Admin actions require confirmation:
 - Generate test report
 - Generate production report
 - Clear test report, recorded as a safe no-delete action
+
+Admin API calls use:
+
+```bash
+curl -X POST https://dashboard.after-enough.com/api/refresh \
+  -H "Authorization: Bearer $ADMIN_DASHBOARD_SECRET"
+```
 
 ## Data Vendor
 
@@ -207,7 +259,7 @@ Production-mode smoke test:
 
 ```bash
 npm run build
-MOCK_DATA_MODE=true DASHBOARD_DEV_BYPASS=true NEXT_PUBLIC_APP_URL=http://localhost:3000 npm start
+MOCK_DATA_MODE=true PUBLIC_DASHBOARD_ACCESS=true DASHBOARD_DEV_BYPASS=false NEXT_PUBLIC_APP_URL=http://localhost:3000 CRON_SECRET=abcdefghijklmnopqrstuvwxyz ADMIN_DASHBOARD_SECRET=adminsecretabcdefghijklmnopqrstuvwxyz npm start
 ```
 
 Then check:
@@ -219,9 +271,20 @@ Then check:
 - `/api/refresh`
 - `/api/generate-morning-report`
 
+Expected public-mode checks:
+
+- `/dashboard` opens without Cloudflare headers on the custom domain.
+- `/api/health` opens publicly and contains no secrets.
+- `/dashboard/system-status` remains protected.
+- `/api/refresh` remains protected and requires `ADMIN_DASHBOARD_SECRET`.
+- `/api/generate-morning-report` remains protected and requires `CRON_SECRET`.
+- Raw Vercel deployment URLs are blocked for dashboard/report reads when `NEXT_PUBLIC_APP_URL` is set to the custom domain.
+
 ## Troubleshooting
 
 - Redirected to login: Cloudflare Access did not send the expected identity or JWT headers, or the email does not match `AUTHORIZED_EMAIL`.
+- Public dashboard still redirects: verify `PUBLIC_DASHBOARD_ACCESS=true` in Vercel and redeploy.
+- Refresh button is hidden: expected in public mode. Automatic morning refresh remains enabled.
 - `/api/health` configuration error: required production variables are missing or unsafe.
 - Cron skipped: wrong local Detroit time, weekend, market holiday, or duplicate report date.
 - Stale warning: provider failed or previous data was reused. Check `daily_reports.raw_data.providerErrors` and `report_runs`.

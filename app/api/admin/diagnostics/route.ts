@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { canUseDevBypass, hasValidAdminSecret } from "@/lib/trading/auth";
 import { FmpProvider } from "@/lib/trading/providers";
 import { generateMorningReport } from "@/lib/trading/report";
 import { recordReportRun, saveReport } from "@/lib/trading/store";
@@ -12,6 +13,10 @@ const BodySchema = z.object({
 });
 
 export async function POST(request: Request) {
+  if (!hasValidAdminSecret(request) && !canUseDevBypass()) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const { action } = BodySchema.parse(await request.json());
 
   if (action === "test-fmp") {

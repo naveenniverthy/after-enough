@@ -16,10 +16,9 @@ type CalculatorState = {
 };
 
 type DashboardSystemStatus = {
-  config?: {
-    mockMode?: boolean;
-    dataDelayStatus?: string;
-  };
+  mockMode?: boolean;
+  dataDelayStatus?: string;
+  publicDashboardAccess?: boolean;
   market?: {
     isMarketDay?: boolean;
     reason?: string;
@@ -112,9 +111,11 @@ function Section({ title, children, action }: { title: string; children: React.R
 export default function DashboardClient({
   initialReport,
   initialArchive,
+  allowManualRefresh,
 }: {
-  initialReport: MorningReport;
+  initialReport: MorningReport | null;
   initialArchive: ReportListItem[];
+  allowManualRefresh: boolean;
 }) {
   const [report, setReport] = useState(initialReport);
   const [archive, setArchive] = useState(initialArchive);
@@ -151,15 +152,15 @@ export default function DashboardClient({
     "Exit plan defined",
   ];
 
-  const checklist = checklistsByDate[report.reportDate] ?? {};
-  const freshness = reportFreshness(report);
+  const checklist = report ? (checklistsByDate[report.reportDate] ?? {}) : {};
+  const freshness = report ? reportFreshness(report) : { isCriticalStale: false, staleSections: [] };
 
   useEffect(() => {
     window.localStorage.setItem("trading-checklists", JSON.stringify(checklistsByDate));
   }, [checklistsByDate]);
 
   useEffect(() => {
-    fetch("/api/system-status")
+    fetch("/api/health")
       .then((response) => (response.ok ? response.json() : null))
       .then((payload) => setSystemStatus(payload))
       .catch(() => setSystemStatus(null));
@@ -238,18 +239,24 @@ export default function DashboardClient({
           <p className="trading-kicker">After Enough Trading Dashboard</p>
           <h1>Morning trading briefing</h1>
           <p className="trading-muted">
-            Report date {report.reportDate} · Last updated {formatEastern(report.generatedAt)}. Informational only, not financial advice.
+            {report
+              ? `Report date ${report.reportDate} · Last updated ${formatEastern(report.generatedAt)}.`
+              : "No morning report has been generated yet."} Informational only, not financial advice.
           </p>
           <div className="health-row">
-            <HealthPill label="Mode" state={systemStatus?.config?.mockMode ? "mock" : "production"} />
-            <HealthPill label="Delay" state={systemStatus?.config?.dataDelayStatus ?? "unknown"} />
+            <HealthPill label="Mode" state={systemStatus?.mockMode ? "mock" : "production"} />
+            <HealthPill label="Delay" state={systemStatus?.dataDelayStatus ?? "unknown"} />
             <HealthPill label="Market" state={systemStatus?.market?.isMarketDay ? "open" : "closed"} />
             <HealthPill label="Next refresh" state={systemStatus?.nextScheduledRefresh ? formatEastern(systemStatus.nextScheduledRefresh) : "unknown"} />
           </div>
         </div>
-        <button className="trading-button" onClick={refreshReport} disabled={isRefreshing}>
-          {isRefreshing ? "Refreshing..." : "Refresh Now"}
-        </button>
+        {allowManualRefresh ? (
+          <button className="trading-button" onClick={refreshReport} disabled={isRefreshing}>
+            {isRefreshing ? "Refreshing..." : "Refresh Now"}
+          </button>
+        ) : (
+          <div className="refresh-disabled">Automatic morning refresh enabled</div>
+        )}
       </header>
 
       {refreshError ? <div className="trading-error">{refreshError}</div> : null}
@@ -259,6 +266,25 @@ export default function DashboardClient({
       {freshness.isCriticalStale ? (
         <div className="trading-error">Stale data warning: {freshness.staleSections.join(", ")} need attention before trading.</div>
       ) : null}
+
+      {!report ? (
+        <section className="trading-panel empty-report">
+          <p className="trading-kicker">Waiting for first report</p>
+          <h2>No morning report has been generated yet.</h2>
+          <p>
+            The first report will appear here after the scheduled weekday morning
+            job runs. Automatic morning refresh is enabled.
+          </p>
+          <dl className="risk-grid">
+            <div><dt>Next scheduled report</dt><dd>{systemStatus?.nextScheduledRefresh ? formatEastern(systemStatus.nextScheduledRefresh) : "Not scheduled"}</dd></div>
+            <div><dt>Market status</dt><dd>{systemStatus?.market?.reason ?? "Unknown"}</dd></div>
+            <div><dt>Data mode</dt><dd>{systemStatus?.mockMode ? "Mock" : "Production"}</dd></div>
+          </dl>
+        </section>
+      ) : null}
+
+      {!report ? null : (
+      <>
 
       <section className="critical-alert">
         <div>
@@ -436,13 +462,15 @@ export default function DashboardClient({
                     type="checkbox"
                     checked={Boolean(checklist[item])}
                     onChange={(event) =>
-                      setChecklistsByDate((current) => ({
-                        ...current,
-                        [report.reportDate]: {
-                          ...(current[report.reportDate] ?? {}),
-                          [item]: event.target.checked,
-                        },
-                      }))
+                      report
+                        ? setChecklistsByDate((current) => ({
+                            ...current,
+                            [report.reportDate]: {
+                              ...(current[report.reportDate] ?? {}),
+                              [item]: event.target.checked,
+                            },
+                          }))
+                        : undefined
                     }
                   />
                   <span>{item}</span>
@@ -512,6 +540,8 @@ export default function DashboardClient({
           </Section>
         </aside>
       </div>
+      </>
+      )}
     </main>
   );
 }

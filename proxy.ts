@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { canUseDevBypass, getAuthorizedEmail, verifyCloudflareAccessRequest } from "./lib/trading/auth";
+import { canUseDevBypass, getAuthorizedEmail, hasValidAdminSecret, verifyCloudflareAccessRequest } from "./lib/trading/auth";
+import { getEnv } from "./lib/trading/env";
 
 const protectedPrefixes = [
   "/dashboard",
@@ -12,18 +13,33 @@ const protectedPrefixes = [
 
 type RawUrlEnv = Partial<Record<"NODE_ENV" | "VERCEL_ENV" | "NEXT_PUBLIC_APP_URL" | "ALLOW_VERCEL_BYPASS", string>>;
 
-export function shouldBlockRawDeploymentUrl(origin: string, env: RawUrlEnv = process.env) {
+export function shouldBlockRawDeploymentUrl(origin: string, pathname = "/dashboard", env: RawUrlEnv = process.env) {
   const isProductionDeployment = env.NODE_ENV === "production" || env.VERCEL_ENV === "production";
   return Boolean(
     isProductionDeployment &&
       env.NEXT_PUBLIC_APP_URL &&
       env.ALLOW_VERCEL_BYPASS !== "true" &&
-      origin !== env.NEXT_PUBLIC_APP_URL,
+      origin !== env.NEXT_PUBLIC_APP_URL &&
+      (pathname === "/dashboard" || pathname.startsWith("/api/latest-report") || pathname.startsWith("/api/reports")),
+  );
+}
+
+export function isPublicReadRoute(pathname: string, method: string, publicAccess: boolean) {
+  if (!publicAccess || method !== "GET") {
+    return false;
+  }
+
+  return (
+    pathname === "/dashboard" ||
+    pathname === "/api/latest-report" ||
+    pathname === "/api/reports" ||
+    pathname.startsWith("/api/reports/")
   );
 }
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const env = getEnv();
 
   if (pathname === "/") {
     const url = request.nextUrl.clone();
@@ -31,7 +47,15 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (shouldBlockRawDeploymentUrl(request.nextUrl.origin)) {
+  if (isPublicReadRoute(pathname, request.method, env.PUBLIC_DASHBOARD_ACCESS)) {
+    if (shouldBlockRawDeploymentUrl(request.nextUrl.origin, pathname)) {
+      return new Response("Forbidden", { status: 403 });
+    }
+
+    return NextResponse.next();
+  }
+
+  if (shouldBlockRawDeploymentUrl(request.nextUrl.origin, pathname)) {
     return new Response("Forbidden", { status: 403 });
   }
 
@@ -42,6 +66,10 @@ export async function proxy(request: NextRequest) {
   }
 
   if (canUseDevBypass()) {
+    return NextResponse.next();
+  }
+
+  if (hasValidAdminSecret(request)) {
     return NextResponse.next();
   }
 

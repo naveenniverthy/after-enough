@@ -12,5 +12,8 @@ describe("/api/health", () => {
     expect(payload.applicationStatus).toBeDefined();
     expect(JSON.stringify(payload)).not.toContain("SUPABASE_SERVICE_ROLE_KEY");
     expect(JSON.stringify(payload)).not.toContain("FMP_API_KEY");
+    expect(JSON.stringify(payload)).not.toContain("ADMIN_DASHBOARD_SECRET");
+    expect(JSON.stringify(payload)).not.toContain("CRON_SECRET");
+    expect(JSON.stringify(payload)).not.toContain("AUTHORIZED_EMAIL");
   });
 });

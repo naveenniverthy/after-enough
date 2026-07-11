@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { canUseDevBypass, hasValidCronSecret, isAuthorizedRequest } from "./auth";
+import { canUseDevBypass, hasValidAdminSecret, hasValidCronSecret, isAuthorizedRequest } from "./auth";
 
 describe("dashboard authorization", () => {
   it("authorizes the configured email header", () => {
@@ -47,5 +47,20 @@ describe("dashboard authorization", () => {
 
     expect(hasValidCronSecret(valid)).toBe(true);
     expect(hasValidCronSecret(invalid)).toBe(false);
+  });
+
+  it("validates admin secrets", () => {
+    process.env.ADMIN_DASHBOARD_SECRET = "adminsecretabcdefghijklmnopqrstuvwxyz";
+    const valid = new Request("https://dashboard.after-enough.com/api/refresh", {
+      method: "POST",
+      headers: { authorization: "Bearer adminsecretabcdefghijklmnopqrstuvwxyz" },
+    });
+    const invalid = new Request("https://dashboard.after-enough.com/api/refresh", {
+      method: "POST",
+      headers: { authorization: "Bearer nope" },
+    });
+
+    expect(hasValidAdminSecret(valid)).toBe(true);
+    expect(hasValidAdminSecret(invalid)).toBe(false);
   });
 });

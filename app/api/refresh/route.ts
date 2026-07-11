@@ -1,4 +1,4 @@
-import { isAuthorizedRequest } from "@/lib/trading/auth";
+import { canUseDevBypass, hasValidAdminSecret } from "@/lib/trading/auth";
 import { logError, logInfo, logWarn } from "@/lib/trading/logger";
 import { generateMorningReport } from "@/lib/trading/report";
 import { recordReportRun, saveReport } from "@/lib/trading/store";
@@ -7,7 +7,7 @@ import { easternDateKey } from "@/lib/trading/time";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
-  if (!isAuthorizedRequest(request) && process.env.DASHBOARD_DEV_BYPASS !== "true") {
+  if (!hasValidAdminSecret(request) && !canUseDevBypass()) {
     logWarn("auth_rejected", { reason: "refresh_unauthorized" });
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }

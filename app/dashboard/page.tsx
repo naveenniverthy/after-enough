@@ -1,4 +1,4 @@
-import { generateMorningReport } from "@/lib/trading/report";
+import { getEnv } from "@/lib/trading/env";
 import { getLatestReport, listReports } from "@/lib/trading/store";
 import DashboardClient from "./DashboardClient";
 
@@ -15,7 +15,12 @@ export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
   const [storedReport, archive] = await Promise.all([getLatestReport(), listReports()]);
-  const report = storedReport ?? (await generateMorningReport());
 
-  return <DashboardClient initialReport={report} initialArchive={archive} />;
+  return (
+    <DashboardClient
+      initialReport={storedReport}
+      initialArchive={archive}
+      allowManualRefresh={!getEnv().PUBLIC_DASHBOARD_ACCESS}
+    />
+  );
 }
