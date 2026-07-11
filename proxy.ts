@@ -13,6 +13,25 @@ const protectedPrefixes = [
 
 type RawUrlEnv = Partial<Record<"NODE_ENV" | "VERCEL_ENV" | "NEXT_PUBLIC_APP_URL" | "ALLOW_VERCEL_BYPASS", string>>;
 
+function normalizedOrigin(url: string | undefined) {
+  if (!url) {
+    return "";
+  }
+
+  try {
+    return new URL(url).origin;
+  } catch {
+    return "";
+  }
+}
+
+export function shouldRedirectRootToDashboard(origin: string, env: RawUrlEnv = process.env) {
+  const configuredOrigin = normalizedOrigin(env.NEXT_PUBLIC_APP_URL);
+  const configuredHostname = configuredOrigin ? new URL(configuredOrigin).hostname : "";
+
+  return origin === "https://dashboard.after-enough.com" || (origin === configuredOrigin && configuredHostname.startsWith("dashboard."));
+}
+
 export function shouldBlockRawDeploymentUrl(origin: string, pathname = "/dashboard", env: RawUrlEnv = process.env) {
   const isProductionDeployment = env.NODE_ENV === "production" || env.VERCEL_ENV === "production";
   return Boolean(
@@ -40,7 +59,7 @@ export function isPublicReadRoute(pathname: string, method: string, publicAccess
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname === "/") {
+  if (pathname === "/" && shouldRedirectRootToDashboard(request.nextUrl.origin)) {
     const url = request.nextUrl.clone();
     url.pathname = "/dashboard";
     return NextResponse.redirect(url);

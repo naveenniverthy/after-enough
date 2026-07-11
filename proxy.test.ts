@@ -1,11 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
 import { NextRequest } from "next/server";
-import { isPublicReadRoute, proxy, shouldBlockRawDeploymentUrl } from "./proxy";
+import { isPublicReadRoute, proxy, shouldBlockRawDeploymentUrl, shouldRedirectRootToDashboard } from "./proxy";
 
 describe("proxy production protection", () => {
   it("blocks raw Vercel URL access when production app URL is configured", async () => {
     expect(
-      shouldBlockRawDeploymentUrl("https://after-enough.vercel.app", {
+      shouldBlockRawDeploymentUrl("https://after-enough.vercel.app", "/dashboard", {
         VERCEL_ENV: "production",
         NEXT_PUBLIC_APP_URL: "https://dashboard.after-enough.com",
         ALLOW_VERCEL_BYPASS: "false",
@@ -20,6 +20,22 @@ describe("proxy production protection", () => {
 
     expect(response.status).toBe(307);
     expect(response.headers.get("location")).toContain("/dashboard");
+  });
+
+  it("keeps the public site root on the public domain", async () => {
+    vi.stubEnv("VERCEL_ENV", "");
+    vi.stubEnv("NEXT_PUBLIC_APP_URL", "");
+    const response = await proxy(new NextRequest("https://after-enough.com/"));
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("location")).toBeNull();
+  });
+
+  it("only redirects configured dashboard roots", () => {
+    expect(shouldRedirectRootToDashboard("https://dashboard.after-enough.com")).toBe(true);
+    expect(shouldRedirectRootToDashboard("https://dashboard.after-enough.com", { NEXT_PUBLIC_APP_URL: "https://dashboard.after-enough.com" })).toBe(true);
+    expect(shouldRedirectRootToDashboard("https://after-enough.com", { NEXT_PUBLIC_APP_URL: "https://after-enough.com" })).toBe(false);
+    expect(shouldRedirectRootToDashboard("https://after-enough.com", { NEXT_PUBLIC_APP_URL: "https://dashboard.after-enough.com" })).toBe(false);
   });
 
   it("allows public dashboard and read API routes only when enabled", () => {
